@@ -3,8 +3,7 @@ https://nbviewer.jupyter.org/urls/laurentlessard.com/teaching/cs524/examples/Str
 
 Structural optimization
 =#
-using LinearAlgebra
-function structural(n=100, args...; kwargs...)
+function structural(args...; n=100, kwargs...)
 
     sub2ind(shape, a, b) = LinearIndices(shape)[CartesianIndex.(a, b)]
     Nx = min(Int(round(n^(1/3))), 6)
@@ -221,4 +220,3 @@ function structural_radnlp(; n::Int=100, type::Val{T}=Val(Float64)) where T
     uvar = Inf * ones(T, 2*M)
     return RADNLPModel(f, x0, lvar, uvar, c, lcon, ucon, name="structural_radnlp")
 end
-
