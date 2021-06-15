@@ -5,7 +5,8 @@ using ADNLPModels, ReverseDiff, Zygote, ForwardDiff
 # Temp
 using NLPModelsJuMP, JuMP
 
-#problems = ["hs5", "brownden"]
+# Test problems from ADNLPModels: no JuMP models for these
+problems1 = ["brownden", "hs5", "hs10", "hs11", "hs14", "lincon", "linsv", "mgh01feas"]
 problems2 = ["arglina", "arglinb", "arglinc", "arwhead", "bdqrtic", "beale", "broydn7d",
              "brybnd", "chainwoo", "chnrosnb_mod", "cosine", "cragglvy", "curly10", "curly20", 
              "curly30", "dixon3dq", "dqdrtic",
@@ -21,7 +22,7 @@ problems3 = ["hs6", "hs7", "hs8", "hs9", "hs26", "hs27", "hs28", "hs39", "hs40",
 #scalable constrained problems
 problems4 = ["clnlbeam", "controlinvestment", "hovercraft1d", "polygon1", "polygon2", "polygon3", "structural"]
 
-problems = union(problems2, problems4)
+const problems = union(problems1, problems2, problems3, problems4)
 
 for pb in problems
   include("$(lowercase(pb)).jl")
@@ -30,7 +31,7 @@ end
 #Extend the functions of each problems to the variants of RADNLPModel
 nvar = 100 #targeted size >=31
 for pb in problems #readdir("test/problems")
-  eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
+  # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
   eval(Meta.parse("$(pb)_reverse(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD(), n=$(nvar), kwargs...)"))
   eval(Meta.parse("$(pb)_zygote(args... ; kwargs...) = $(pb)_autodiff(args... ;adbackend=ADNLPModels.ZygoteAD(), n=$(nvar), kwargs...)"))
   eval(Meta.parse("$(pb)_jump(args... ; kwargs...) = MathOptNLPModel($(pb)($(nvar)))"))
