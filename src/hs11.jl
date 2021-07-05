@@ -13,3 +13,5 @@ function hs11_autodiff(;
     return ADNLPModel(f, x0, c, lcon, ucon, name = "hs11_autodiff"; kwargs...)
 
 end
+
+hs11_meta = Dict(    :nvar => 2,    :variable_size => false,    :ncon => 1,    :variable_con_size => false,    :nnzo => 2,    :nnzh => 3,    :nnzj => 2,    :minimize => true,    :name => "hs11",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8),    :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => false,    :has_inequalities_only => true,    :has_bounds => false,    :has_fixed_variables => false,    :cqs => 0,  )
