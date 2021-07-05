@@ -14,7 +14,7 @@ end
 function nondquar_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     function f(x)
         n = length(x)
@@ -25,5 +25,5 @@ function nondquar_autodiff(;
 
     x0 = ones(T, n)
     x0[2*collect(1:div(n, 2))] .= -one(T)
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "nondquar_autodiff")
+    return ADNLPModel(f, x0,  name = "nondquar_autodiff"; kwargs...)
 end

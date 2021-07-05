@@ -1,7 +1,7 @@
 function mgh01feas_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
 
     x0 = [-1.2; 1.0]
@@ -17,6 +17,6 @@ function mgh01feas_autodiff(;
         lcon,
         ucon,
         name = "mgh01feas_autodiff",
-        adbackend = adbackend,
+        kwargs...,
     )
 end

@@ -12,7 +12,7 @@ end
 function edensch_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     function f(x)
         n = length(x)
@@ -21,5 +21,5 @@ function edensch_autodiff(;
         )
     end
     x0 = zeros(T, n)
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "edensch_autodiff")
+    return ADNLPModel(f, x0, name = "edensch_autodiff"; kwargs...)
 end

@@ -14,7 +14,7 @@ end
 function freuroth_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     function f(x)
         n = length(x)
@@ -25,5 +25,5 @@ function freuroth_autodiff(;
     x0 = zeros(T, n)
     x0[1] = one(T) / 2
     x0[2] = -2 * one(T)
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "freuroth_autodiff")
+    return ADNLPModel(f, x0, name = "freuroth_autodiff"; kwargs...)
 end

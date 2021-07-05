@@ -12,7 +12,7 @@ end
 function hs9_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     return ADNLPModel(
         x -> sin(π * x[1] / 12) * cos(π * x[2] / 16),
@@ -21,6 +21,6 @@ function hs9_autodiff(;
         [0.0],
         [0.0],
         name = "hs9_autodiff",
-        adbackend = adbackend,
+        kwargs...,
     )
 end

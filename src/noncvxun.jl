@@ -14,7 +14,7 @@ end
 function noncvxun_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 2 || error("noncvxun : n ≥ 2")
     function f(x)
@@ -25,5 +25,5 @@ function noncvxun_autodiff(;
         )
     end
     x0 = T.([i for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "noncvxun_autodiff")
+    return ADNLPModel(f, x0,  name = "noncvxun_autodiff"; kwargs...)
 end

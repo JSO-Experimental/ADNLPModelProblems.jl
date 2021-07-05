@@ -15,7 +15,7 @@ end
 function genhumps_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     function f(x)
         n = length(x)
@@ -27,5 +27,5 @@ function genhumps_autodiff(;
 
     x0 = -506.2 * ones(T, n)
     x0[1] = -506
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "genhumps_autodiff")
+    return ADNLPModel(f, x0, name = "genhumps_autodiff"; kwargs...)
 end

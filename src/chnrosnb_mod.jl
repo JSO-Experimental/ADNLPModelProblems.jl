@@ -16,7 +16,7 @@ end
 function chnrosnb_mod_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...
 ) where {T}
     n ≥ 2 || ("chnrosnb : n ≥ 2")
     function f(x)
@@ -25,5 +25,5 @@ function chnrosnb_mod_autodiff(;
                sum((1.0 - x[i])^2 for i = 2:n)
     end
     x0 = -ones(T, n)
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "chnrosnb_autodiff")
+    return ADNLPModel(f, x0, name = "chnrosnb_autodiff"; kwargs...)
 end

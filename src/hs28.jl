@@ -12,7 +12,7 @@ end
 function hs28_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     return ADNLPModel(
         x -> (x[1] + x[2])^2 + (x[2] + x[3])^2,
@@ -21,6 +21,6 @@ function hs28_autodiff(;
         [0.0],
         [0.0],
         name = "hs28_autodiff",
-        adbackend = adbackend,
+        kwargs...,
     )
 end

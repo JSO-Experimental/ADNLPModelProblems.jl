@@ -21,7 +21,7 @@ end
 function sparsine_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 10 || error("sparsine : n ≥ 10")
     function f(x)
@@ -39,5 +39,5 @@ function sparsine_autodiff(;
         )
     end
     x0 = ones(T, n) / 2
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "sparsine_autodiff")
+    return ADNLPModel(f, x0,  name = "sparsine_autodiff"; kwargs...)
 end

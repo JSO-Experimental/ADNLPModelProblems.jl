@@ -43,7 +43,6 @@ function clnlbeam_autodiff(
     args...;
     n::Int = 300,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
     kwargs...,
 ) where {T}
     N = div(n - 3, 3)
@@ -74,8 +73,8 @@ function clnlbeam_autodiff(
         c,
         zeros(T, 2 * N),
         zeros(T, 2 * N),
-        adbackend = adbackend,
         name = "clnlbeam_autodiff",
+        ; kwargs...
     )
 end
 

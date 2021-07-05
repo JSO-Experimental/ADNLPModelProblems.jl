@@ -18,7 +18,7 @@ end
 function penalty3_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 3 || error("penalty3 : n ≥ 3")
     function f(x)
@@ -33,5 +33,5 @@ function penalty3_autodiff(;
                (sum(x[i]^2 - n for i = 1:n))^2
     end
     x0 = T.([i / (n + 1) for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "penalty3_autodiff")
+    return ADNLPModel(f, x0,  name = "penalty3_autodiff"; kwargs...)
 end

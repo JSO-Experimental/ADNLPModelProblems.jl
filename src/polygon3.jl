@@ -36,7 +36,6 @@ function polygon3_autodiff(
     args...;
     n::Int = 200,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
     kwargs...,
 ) where {T}
     N = div(n, 2)
@@ -60,8 +59,8 @@ function polygon3_autodiff(
         c,
         vcat(-Inf * ones(T, N), zeros(T, N)),
         vcat(ones(T, N), Inf * ones(T, N)),
-        adbackend = adbackend,
         name = "polygon3_autodiff",
+        kwargs...,
     )
 end
 

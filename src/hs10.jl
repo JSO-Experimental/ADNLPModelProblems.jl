@@ -1,7 +1,7 @@
 function hs10_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
 
     x0 = T[-10; 10]
@@ -10,5 +10,5 @@ function hs10_autodiff(;
     lcon = T[0.0]
     ucon = T[Inf]
 
-    return ADNLPModel(f, x0, c, lcon, ucon, name = "hs10_autodiff", adbackend = adbackend)
+    return ADNLPModel(f, x0, c, lcon, ucon, name = "hs10_autodiff"; kwargs...)
 end

@@ -1,7 +1,7 @@
 function linsv_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
 
     x0 = zeros(T, 2)
@@ -17,6 +17,6 @@ function linsv_autodiff(;
         lcon,
         ucon,
         name = "linsv_autodiff",
-        adbackend = adbackend,
+        kwargs...,
     )
 end

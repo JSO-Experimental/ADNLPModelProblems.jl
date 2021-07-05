@@ -12,7 +12,7 @@ end
 function hs46_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     return ADNLPModel(
         x -> (x[1] - x[2])^2 + (x[3] - 1)^2 + (x[4] - 1)^4 + (x[5] - 1)^6,
@@ -21,6 +21,6 @@ function hs46_autodiff(;
         zeros(2),
         zeros(2),
         name = "hs46_autodiff",
-        adbackend = adbackend,
+        kwargs...,
     )
 end

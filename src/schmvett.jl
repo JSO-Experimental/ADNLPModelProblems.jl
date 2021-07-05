@@ -13,7 +13,7 @@ end
 function schmvett_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     function f(x)
         n = length(x)
@@ -23,5 +23,5 @@ function schmvett_autodiff(;
         )
     end
     x0 = 3 * ones(T, n)
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "schmvett_autodiff")
+    return ADNLPModel(f, x0,  name = "schmvett_autodiff"; kwargs...)
 end
