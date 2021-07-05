@@ -27,7 +27,6 @@ function controlinvestment_autodiff(
     args...;
     n::Int = 200,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
     kwargs...,
 ) where {T}
     N = div(n, 2)
@@ -55,8 +54,8 @@ function controlinvestment_autodiff(
         c,
         zeros(T, N - 1),
         zeros(T, N - 1),
-        adbackend = adbackend,
         name = "controlinvestment_autodiff",
+        ; kwargs...
     )
 end
 

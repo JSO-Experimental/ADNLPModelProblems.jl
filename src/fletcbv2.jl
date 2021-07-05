@@ -13,7 +13,7 @@ end
 function fletcbv2_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 2 || error("fletcbv2 : n ≥ 2")
     function f(x)
@@ -23,5 +23,5 @@ function fletcbv2_autodiff(;
                h^2 * sum(2 * x[i] + cos(x[i]) for i = 1:n) - x[n]
     end
     x0 = T.([(i / (n + 1.0)) for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "fletcbv2_autodiff")
+    return ADNLPModel(f, x0, name = "fletcbv2_autodiff"; kwargs...)
 end

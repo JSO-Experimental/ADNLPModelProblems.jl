@@ -14,7 +14,7 @@ end
 function srosenbr_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n = 2 * max(1, div(n, 2))  # number of variables adjusted to be even
     function f(x)
@@ -25,5 +25,5 @@ function srosenbr_autodiff(;
     x0 = ones(T, n)
     x0[2*(collect(1:div(n, 2))).-1] .= -1.2
 
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "srosenbr_autodiff")
+    return ADNLPModel(f, x0,  name = "srosenbr_autodiff"; kwargs...)
 end

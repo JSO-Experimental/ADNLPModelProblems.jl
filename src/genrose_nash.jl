@@ -17,7 +17,7 @@ end
 function genrose_nash_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 2 || error("genrose_nash : n ≥ 2")
     function f(x)
@@ -27,5 +27,5 @@ function genrose_nash_autodiff(;
                sum((1.0 - x[i])^2 for i = 2:n)
     end
     x0 = T.([(i / (n + 1.0)) for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "genrose_nash_autodiff")
+    return ADNLPModel(f, x0, name = "genrose_nash_autodiff"; kwargs...)
 end

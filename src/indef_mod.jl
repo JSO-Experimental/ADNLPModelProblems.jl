@@ -12,7 +12,7 @@ end
 function indef_mod_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 3 || error("indef : n ≥ 3")
     function f(x)
@@ -21,5 +21,5 @@ function indef_mod_autodiff(;
                0.5 * sum(cos(2.0 * x[i] - x[n] - x[1]) for i = 2:n-1)
     end
     x0 = T.([(i / (n + 1.0)) for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "indef_autodiff")
+    return ADNLPModel(f, x0,  name = "indef_autodiff"; kwargs...)
 end

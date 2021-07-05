@@ -13,7 +13,7 @@ end
 function vardim_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     function f(x)
         n = length(x)
@@ -23,5 +23,5 @@ function vardim_autodiff(;
     end
 
     x0 = T.([1 - i / n for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "vardim_autodiff")
+    return ADNLPModel(f, x0,  name = "vardim_autodiff"; kwargs...)
 end

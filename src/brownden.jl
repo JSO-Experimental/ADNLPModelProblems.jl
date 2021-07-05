@@ -1,7 +1,7 @@
 function brownden_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...
 ) where {T}
 
     x0 = T[25.0; 5.0; -5.0; -1.0]
@@ -17,5 +17,5 @@ function brownden_autodiff(;
         return s
     end
 
-    return ADNLPModel(f, x0, name = "brownden_autodiff", adbackend = adbackend)
+    return ADNLPModel(f, x0, name = "brownden_autodiff"; kwargs...)
 end

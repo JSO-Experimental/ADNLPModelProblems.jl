@@ -21,7 +21,7 @@ end
 function ncb20_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 31 || error("ncb20 : n ≥ 31")
     function f(x)
@@ -39,5 +39,5 @@ function ncb20_autodiff(;
     x0 = ones(T, n)
     x0[1:n-10] .= zero(T)
 
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "ncb20_autodiff")
+    return ADNLPModel(f, x0,  name = "ncb20_autodiff"; kwargs...)
 end

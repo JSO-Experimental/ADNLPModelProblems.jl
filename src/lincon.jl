@@ -1,7 +1,7 @@
 function lincon_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
 
     A = [1 2; 3 4]
@@ -33,6 +33,6 @@ function lincon_autodiff(;
         lcon,
         ucon,
         name = "lincon_autodiff",
-        adbackend = adbackend,
+        kwargs...,
     )
 end

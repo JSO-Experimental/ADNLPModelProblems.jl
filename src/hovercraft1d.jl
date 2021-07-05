@@ -33,7 +33,6 @@ function hovercraft1d_autodiff(
     args...;
     n::Int = 200,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
     kwargs...,
 ) where {T}
     N = div(n, 3)
@@ -59,8 +58,8 @@ function hovercraft1d_autodiff(
         c,
         zeros(2 * N + 2),
         zeros(2 * N + 2),
-        adbackend = adbackend,
         name = "hovercraft1d_autodiff",
+        kwargs...,
     )
 end
 

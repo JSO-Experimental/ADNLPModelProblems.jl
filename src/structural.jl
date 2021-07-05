@@ -83,7 +83,7 @@ end
 function structural_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     sub2ind(shape, a, b) = LinearIndices(shape)[CartesianIndex.(a, b)]
     Nx = min(Int(round(n^(1 / 3))), 6)
@@ -160,8 +160,8 @@ function structural_autodiff(;
         c,
         lcon,
         ucon,
-        adbackend = adbackend,
         name = "structural_autodiff",
+        kwargs...,
     )
 end
 

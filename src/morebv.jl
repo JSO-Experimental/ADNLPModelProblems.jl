@@ -19,7 +19,7 @@ end
 function morebv_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 2 || error("morebv : n ≥ 2")
     function f(x)
@@ -35,5 +35,5 @@ function morebv_autodiff(;
     x0[1] = zero(T)
     x0[n] = zero(T)
 
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "morebv_autodiff")
+    return ADNLPModel(f, x0,  name = "morebv_autodiff"; kwargs...)
 end

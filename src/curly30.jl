@@ -18,7 +18,7 @@ end
 function curly30_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n < 2 && @warn("curly: number of variables must be ≥ 2")
     n = max(2, n)
@@ -33,5 +33,5 @@ function curly30_autodiff(;
         )
     end
     x0 = T[1.0e-4 * i / (n + 1) for i = 1:n]
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "curly30_autodiff")
+    return ADNLPModel(f, x0, name = "curly30_autodiff"; kwargs...)
 end

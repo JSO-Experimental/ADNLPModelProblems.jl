@@ -12,7 +12,7 @@ end
 function hs39_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     return ADNLPModel(
         x -> -x[1],
@@ -21,6 +21,6 @@ function hs39_autodiff(;
         zeros(2),
         zeros(2),
         name = "hs39_autodiff",
-        adbackend = adbackend,
+        kwargs...,
     )
 end

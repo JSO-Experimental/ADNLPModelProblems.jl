@@ -15,7 +15,7 @@ end
 function scosine_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 2 || error("scosine : n ≥ 2")
     p = zeros(n)
@@ -27,5 +27,5 @@ function scosine_autodiff(;
         return sum(cos(p[i]^2 * x[i]^2 - p[i+1] * x[i+1] / 2.0) for i = 1:n-1)
     end
     x0 = T.([1 / p[i] for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "scosine_autodiff")
+    return ADNLPModel(f, x0,  name = "scosine_autodiff"; kwargs...)
 end

@@ -23,7 +23,7 @@ end
 function sbrybnd_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...,
 ) where {T}
     n ≥ 2 || error("sbrybnd : n ≥ 2")
     p = zeros(n)
@@ -43,5 +43,5 @@ function sbrybnd_autodiff(;
         )
     end
     x0 = T.([1 / p[i] for i = 1:n])
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "sbrybnd_autodiff")
+    return ADNLPModel(f, x0,  name = "sbrybnd_autodiff"; kwargs...)
 end

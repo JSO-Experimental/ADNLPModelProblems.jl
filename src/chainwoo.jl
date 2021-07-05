@@ -18,7 +18,7 @@ end
 function chainwoo_autodiff(;
     n::Int = 100,
     type::Val{T} = Val(Float64),
-    adbackend = ADNLPModels.ForwardDiffAD(),
+    kwargs...
 ) where {T}
     n = 4 * max(1, div(n, 4))  # number of variables adjusted to be a multiple of 4
     function f(x)
@@ -33,5 +33,5 @@ function chainwoo_autodiff(;
         )
     end
     x0 = -2 * ones(T, n)
-    return ADNLPModel(f, x0, adbackend = adbackend, name = "chainwoo_autodiff")
+    return ADNLPModel(f, x0, name = "chainwoo_autodiff"; kwargs...)
 end
