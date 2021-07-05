@@ -32,7 +32,7 @@ function lincon_autodiff(;
         con,
         lcon,
         ucon,
-        name = "lincon_autodiff",
+        name = "lincon_autodiff";
         kwargs...,
     )
 end

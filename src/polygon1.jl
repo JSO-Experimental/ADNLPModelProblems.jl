@@ -54,7 +54,7 @@ function polygon1_autodiff(
         c,
         vcat(Inf * ones(T, N - 1), 0),
         zeros(T, N),
-        name = "polygon1_autodiff",
+        name = "polygon1_autodiff";
         kwargs...,
     )
 end

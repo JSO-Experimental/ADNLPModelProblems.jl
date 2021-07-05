@@ -20,7 +20,7 @@ function hs63_autodiff(;
         x -> [8 * x[1] + 14 * x[2] + 7 * x[3] - 56; x[1]^2 + x[2]^2 + x[3]^2 - 25],
         zeros(2),
         zeros(2),
-        name = "hs63_autodiff",
+        name = "hs63_autodiff";
         kwargs...,
     )
 end

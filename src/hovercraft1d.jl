@@ -58,7 +58,7 @@ function hovercraft1d_autodiff(
         c,
         zeros(2 * N + 2),
         zeros(2 * N + 2),
-        name = "hovercraft1d_autodiff",
+        name = "hovercraft1d_autodiff";
         kwargs...,
     )
 end

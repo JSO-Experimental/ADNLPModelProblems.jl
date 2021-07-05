@@ -38,7 +38,7 @@ function hs79_autodiff(;
         ],
         zeros(3),
         zeros(3),
-        name = "hs79_autodiff",
+        name = "hs79_autodiff";
         kwargs...,
     )
 end

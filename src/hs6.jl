@@ -20,7 +20,7 @@ function hs6_autodiff(;
         x -> [10 * (x[2] - x[1]^2)],
         zeros(1),
         zeros(1),
-        name = "hs6_autodiff",
+        name = "hs6_autodiff";
         kwargs...,
     )
 end

@@ -20,7 +20,7 @@ function hs28_autodiff(;
         x -> [x[1] + 2 * x[2] + 3 * x[3] - 1],
         [0.0],
         [0.0],
-        name = "hs28_autodiff",
+        name = "hs28_autodiff";
         kwargs...,
     )
 end

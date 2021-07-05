@@ -16,7 +16,7 @@ function linsv_autodiff(;
         con,
         lcon,
         ucon,
-        name = "linsv_autodiff",
+        name = "linsv_autodiff";
         kwargs...,
     )
 end

@@ -16,7 +16,7 @@ function mgh01feas_autodiff(;
         c,
         lcon,
         ucon,
-        name = "mgh01feas_autodiff",
+        name = "mgh01feas_autodiff";
         kwargs...,
     )
 end

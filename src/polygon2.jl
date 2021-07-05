@@ -51,7 +51,7 @@ function polygon2_autodiff(
         c,
         zeros(T, 1),
         zeros(T, 1),
-        name = "polygon2_autodiff",
+        name = "polygon2_autodiff";
         kwargs...,
     )
 end

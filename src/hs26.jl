@@ -20,7 +20,7 @@ function hs26_autodiff(;
         x -> [(1 + x[2]^2) * x[1] + x[3]^4 - 3],
         [0.0],
         [0.0],
-        name = "hs26_autodiff",
+        name = "hs26_autodiff";
         kwargs...,
     )
 end

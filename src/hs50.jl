@@ -28,7 +28,7 @@ function hs50_autodiff(;
         ],
         zeros(3),
         zeros(3),
-        name = "hs50_autodiff",
+        name = "hs50_autodiff";
         kwargs...,
     )
 end

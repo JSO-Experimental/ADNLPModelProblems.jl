@@ -20,7 +20,7 @@ function hs9_autodiff(;
         x -> [4 * x[1] - 3 * x[2]],
         [0.0],
         [0.0],
-        name = "hs9_autodiff",
+        name = "hs9_autodiff";
         kwargs...,
     )
 end

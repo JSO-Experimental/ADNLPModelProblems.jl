@@ -20,7 +20,7 @@ function hs7_autodiff(;
         x -> [(1 + x[1]^2)^2 + x[2]^2 - 4],
         [0.0],
         [0.0],
-        name = "hs7_autodiff",
+        name = "hs7_autodiff";
         kwargs...,
     )
 end

@@ -20,7 +20,7 @@ function hs52_autodiff(;
         x -> [x[1] + 3 * x[2]; x[3] + x[4] - 2 * x[5]; x[2] - x[5]],
         zeros(3),
         zeros(3),
-        name = "hs52_autodiff",
+        name = "hs52_autodiff";
         kwargs...,
     )
 end

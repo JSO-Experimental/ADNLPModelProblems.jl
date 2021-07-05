@@ -20,7 +20,7 @@ function hs8_autodiff(;
         x -> [x[1]^2 + x[2]^2 - 25; x[1] * x[2] - 9],
         zeros(2),
         zeros(2),
-        name = "hs8_autodiff",
+        name = "hs8_autodiff";
         kwargs...,
     )
 end

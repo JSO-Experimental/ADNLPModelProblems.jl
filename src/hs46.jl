@@ -20,7 +20,7 @@ function hs46_autodiff(;
         x -> [(x[1]^2) * x[4] + sin(x[4] - x[5]) - 1; x[2] + (x[3]^4) * (x[4]^2) - 2],
         zeros(2),
         zeros(2),
-        name = "hs46_autodiff",
+        name = "hs46_autodiff";
         kwargs...,
     )
 end

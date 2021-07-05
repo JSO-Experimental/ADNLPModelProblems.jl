@@ -46,7 +46,7 @@ function hs56_autodiff(;
         ],
         zeros(4),
         zeros(4),
-        name = "hs56_autodiff",
+        name = "hs56_autodiff";
         kwargs...,
     )
 end

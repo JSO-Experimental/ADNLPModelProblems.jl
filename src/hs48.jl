@@ -20,7 +20,7 @@ function hs48_autodiff(;
         x -> [x[1] + x[2] + x[3] + x[4] + x[5] - 5; x[3] - 2 * (x[4] + x[5]) + 3],
         zeros(2),
         zeros(2),
-        name = "hs48_autodiff",
+        name = "hs48_autodiff";
         kwargs...,
     )
 end

@@ -59,7 +59,7 @@ function polygon3_autodiff(
         c,
         vcat(-Inf * ones(T, N), zeros(T, N)),
         vcat(ones(T, N), Inf * ones(T, N)),
-        name = "polygon3_autodiff",
+        name = "polygon3_autodiff";
         kwargs...,
     )
 end

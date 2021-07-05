@@ -20,7 +20,7 @@ function hs40_autodiff(;
         x -> [x[1]^3 + x[2]^2 - 1; x[4] * x[1]^2 - x[3]; x[4]^2 - x[2]],
         zeros(3),
         zeros(3),
-        name = "hs40_autodiff",
+        name = "hs40_autodiff";
         kwargs...,
     )
 end

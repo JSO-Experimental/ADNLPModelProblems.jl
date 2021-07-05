@@ -20,7 +20,7 @@ function hs27_autodiff(;
         x -> [x[1] + x[3]^2 + 1],
         [0.0],
         [0.0],
-        name = "hs27_autodiff",
+        name = "hs27_autodiff";
         kwargs...,
     )
 end
