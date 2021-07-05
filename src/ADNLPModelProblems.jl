@@ -128,17 +128,13 @@ const cqs = Dict(4 => "LICQ", 3 => "MFCQ", 2 => "GCQ", 1 => "none", 0 => "unknow
 const names = [
   :nvar
   :variable_size
-  :x0
   :ncon
   :variable_con_size
-  :y0
   :nnzo
   :nnzh
   :nnzj
   :minimize
   :name
-  :global_solution
-  :local_solution
   :optimal_value
   :has_multiple_solution
   :is_infeasible
@@ -159,17 +155,13 @@ const names = [
 const types = [
   Int
   Bool
-  Vector
   Int
   Bool
-  Vector
   Int
   Int
   Int
   Bool
   String
-  Vector
-  Tuple
   Real
   Union{Bool, Missing}
   Union{Bool, Missing}
@@ -200,18 +192,14 @@ The following keys are valid:
 Problem meta
 - `nvar`: number of general constraints
 - `variable_size`: true if we can modify problem size
-- `x0`: initial guess
 - `ncon`: number of general constraints
 - `variable_con_size`: true if we can modify problem size
-- `y0`: initial Lagrange multipliers
 - `nnzo`: number of nonzeros in all objectives gradients
 - `nnzh`: number of elements needed to store the nonzeros in the sparse Hessian
 - `nnzj`: number of elements needed to store the nonzeros in the sparse Jacobian
 - `minimize`: true if optimize == minimize
 - `name`: problem name
 Solution meta
-- `global_solution`: a global solution
-- `local_solution`: tuple of local solutions
 - `optimalvalue`: best known objective value (NaN if unknown, -Inf if unbounded problem)
 - `has_multiple_solution`: true if the problem has more than one global solution
 - `is_infeasible`: true if problem is infeasible
@@ -231,11 +219,9 @@ Classification
 """
 const meta = DataFrame(names .=> [Array{T}(undef, number_of_problems) for T in types])
 
-#=
-for i=1:6 # number_of_problems
+for i=2:7 # number_of_problems # first is if file ≠ "ADNLPModelProblems.jl"
   meta[i,:] = eval(Meta.parse(first(split(files[i], "."))*"_meta"))
 end
-=#
 
 """
   `generate_meta(jmodel, name, variable_size, variable_con_size, cvx_obj, cvx_con, quad_cons)`   
@@ -243,12 +229,12 @@ end
   is used to generate the meta of a given JuMP model.
 """
 function generate_meta(name::String, args...;kwargs...)
-  return generate_meta(eval(Meta.parse(name))(), name, args...; kwargs...)
+  return generate_meta(eval(Meta.parse(name*"_autodiff(n=$(default_nvar))")), name, args...; kwargs...)
 end
 
 function generate_meta(
   nlp::AbstractNLPModel, 
-  name::String, 
+  name::String;
   variable_size::Bool=false, 
   variable_con_size::Bool=false,
   cvx_obj::Bool=false,
@@ -271,17 +257,13 @@ function generate_meta(
   str = "$(name)_meta = Dict(
     :nvar => $(nlp.meta.nvar),
     :variable_size => $(variable_size),
-    :x0 => $(nlp.meta.x0),
     :ncon => $(nlp.meta.ncon),
     :variable_con_size => $(variable_con_size),
-    :y0 => $(nlp.meta.y0),
     :nnzo => $(nlp.meta.nnzo),
     :nnzh => $(nlp.meta.nnzh),
     :nnzj => $(nlp.meta.nnzj),
     :minimize => $(nlp.meta.minimize),
-    :name => $(name),
-    :global_solution => $(NaN * ones(nlp.meta.nvar)),
-    :local_solution => (),
+    :name => \"$(name)\",
     :optimal_value => $(NaN),
     :has_multiple_solution => $(missing),
     :is_infeasible => $(nlp.meta.ncon == 0 ? false : missing),
