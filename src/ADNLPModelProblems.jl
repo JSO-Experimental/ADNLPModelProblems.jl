@@ -219,10 +219,6 @@ Classification
 """
 const meta = DataFrame(names .=> [Array{T}(undef, number_of_problems) for T in types])
 
-for i=2:7 # number_of_problems # first is if file ≠ "ADNLPModelProblems.jl"
-  meta[i,:] = eval(Meta.parse(first(split(files[i], "."))*"_meta"))
-end
-
 """
   `generate_meta(jmodel, name, variable_size, variable_con_size, cvx_obj, cvx_con, quad_cons)`   
   `generate_meta(name, variable_size, variable_con_size, cvx_obj, cvx_con, quad_cons)`   
@@ -283,24 +279,29 @@ function generate_meta(
   return str
 end
 
-for pb in union(problems, problems_no_jump)
-  # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
-  eval(
-    Meta.parse(
-      "$(pb)_reverse(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD(), n=$(default_nvar), kwargs...)",
-    ),
-  )
-  eval(
-    Meta.parse(
-      "$(pb)_zygote(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ZygoteAD(), n=$(default_nvar), kwargs...)",
-    ),
-  )
-  if pb in problems
+let i=1
+  for pb in union(problems, problems_no_jump)
+    # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
+    meta[i,:] = eval(Meta.parse(pb * "_meta"))
+    nvar, ncon = meta[i, :nvar], meta[i, :ncon]
     eval(
       Meta.parse(
-        "$(pb)_jump(args... ; n=$(default_nvar), kwargs...) = MathOptNLPModel($(pb)(n))",
+        "$(pb)_reverse(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
       ),
     )
+    eval(
+      Meta.parse(
+        "$(pb)_zygote(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ZygoteAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
+      ),
+    )
+    if pb in problems
+      eval(
+        Meta.parse(
+          "$(pb)_jump(args... ; n=$(default_nvar), kwargs...) = MathOptNLPModel($(pb)(n))",
+        ),
+      )
+    end
+    i += 1
   end
 end
 
