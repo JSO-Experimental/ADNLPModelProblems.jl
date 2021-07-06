@@ -54,7 +54,7 @@ function polygon1_autodiff(
         c,
         vcat(Inf * ones(T, N - 1), 0),
         zeros(T, N),
-        name = "polygon1_autodiff",
+        name = "polygon1_autodiff";
         kwargs...,
     )
 end
@@ -89,3 +89,6 @@ function polygon1_radnlp(
         name = "polygon1_radnlp",
     )
 end
+
+polygon1_meta = Dict(    :nvar => 100,    :variable_size => false,    :ncon => 50,    :variable_con_size => false,    :nnzo => 100,    :nnzh => 5050,    :nnzj => 5000,    :minimize => true,    :name => "polygon1",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8),   
+ :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => false,    :has_inequalities_only => false,    :has_bounds => true,    :has_fixed_variables => false,    :cqs => 0,  )

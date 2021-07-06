@@ -32,7 +32,10 @@ function lincon_autodiff(;
         con,
         lcon,
         ucon,
-        name = "lincon_autodiff",
+        name = "lincon_autodiff";
         kwargs...,
     )
 end
+
+lincon_meta = Dict(    :nvar => 15,    :variable_size => false,    :ncon => 11,    :variable_con_size => false,    :nnzo => 15,    :nnzh => 120,    :nnzj => 165,    :minimize => true,    :name => "lincon",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8),    :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => false,    :has_inequalities_only => false,    :has_bounds => false,    :has_fixed_variables => false,  
+  :cqs => 0,  )

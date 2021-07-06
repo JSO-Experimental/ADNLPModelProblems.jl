@@ -20,7 +20,9 @@ function hs63_autodiff(;
         x -> [8 * x[1] + 14 * x[2] + 7 * x[3] - 56; x[1]^2 + x[2]^2 + x[3]^2 - 25],
         zeros(2),
         zeros(2),
-        name = "hs63_autodiff",
+        name = "hs63_autodiff";
         kwargs...,
     )
 end
+
+hs63_meta = Dict(    :nvar => 3,    :variable_size => false,    :ncon => 2,    :variable_con_size => false,    :nnzo => 3,    :nnzh => 6,    :nnzj => 6,    :minimize => true,    :name => "hs63",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8),    :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => true,    :has_inequalities_only => false,    :has_bounds => false,    :has_fixed_variables => false,    :cqs => 0,  )

@@ -3,8 +3,9 @@ using ADNLPModelProblems
 using Suppressor, Test
 
 @suppress begin
-  n = 31
+  n = ADNLPModelProblems.default_nvar
   for pb in ADNLPModelProblems.problems
+    @show pb
       eval(Meta.parse("ADNLPModelProblems.$(pb)_autodiff(n=$n)"))
       eval(Meta.parse("ADNLPModelProblems.$(pb)_reverse(n=$n)"))
       eval(Meta.parse("ADNLPModelProblems.$(pb)_zygote(n=$n)"))

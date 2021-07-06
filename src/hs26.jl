@@ -20,7 +20,9 @@ function hs26_autodiff(;
         x -> [(1 + x[2]^2) * x[1] + x[3]^4 - 3],
         [0.0],
         [0.0],
-        name = "hs26_autodiff",
+        name = "hs26_autodiff";
         kwargs...,
     )
 end
+
+hs26_meta = Dict(    :nvar => 3,    :variable_size => false,    :ncon => 1,    :variable_con_size => false,    :nnzo => 3,    :nnzh => 6,    :nnzj => 3,    :minimize => true,    :name => "hs26",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8),    :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => true,    :has_inequalities_only => false,    :has_bounds => false,    :has_fixed_variables => false,    :cqs => 0,  )
