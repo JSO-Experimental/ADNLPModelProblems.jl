@@ -284,29 +284,27 @@ function generate_meta(
     return str
 end
 
-let i = 1
-    for pb in union(problems, problems_no_jump)
-        # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
-        meta[i, :] = eval(Meta.parse(pb * "_meta"))
-        nvar, ncon = meta[i, :nvar], meta[i, :ncon]
-        eval(
-            Meta.parse(
-                "$(pb)_reverse(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
-            ),
-        )
-        eval(
-            Meta.parse(
-                "$(pb)_zygote(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ZygoteAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
-            ),
-        )
-        if pb in problems
-            eval(
-                Meta.parse(
-                    "$(pb)_jump(args... ; n=$(default_nvar), kwargs...) = MathOptNLPModel($(pb)(n))",
-                ),
-            )
-        end
-        i += 1
+let i=1
+  for pb in union(problems, problems_no_jump)
+    # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
+    meta[i,:] = eval(Meta.parse(pb * "_meta"))
+    nvar, ncon = meta[i, :nvar], meta[i, :ncon]
+    eval(
+      Meta.parse(
+        "$(pb)_reverse(args... ; n=$(default_nvar), kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD($(nvar),$(ncon)), n=n, kwargs...)",
+      ),
+    )
+    eval(
+      Meta.parse(
+        "$(pb)_zygote(args... ; n=$(default_nvar), kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ZygoteAD($(nvar),$(ncon)), n=n, kwargs...)",
+      ),
+    )
+    if pb in problems
+      eval(
+        Meta.parse(
+          "$(pb)_jump(args... ; n=$(default_nvar), kwargs...) = MathOptNLPModel($(pb)(n))",
+        ),
+      )
     end
 end
 
