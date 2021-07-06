@@ -16,11 +16,11 @@ ReverseDiff = "37e2e3b7-166d-5795-8a7a-e32c996b4267"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [compat]
-ADNLPModels = "0.2"
+ADNLPModels = "0.2, 0.3"
 DataFrames = "1"
 ForwardDiff = "0.10"
 JuMP = "0.21"
-NLPModels = "0.15"
+NLPModels = "0.15, 0.16, 0.17"
 NLPModelsJuMP = "0.8"
 OptimizationProblems = "0.3"
 ReverseDiff = "1.9"
