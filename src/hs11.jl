@@ -1,8 +1,4 @@
-function hs11_autodiff(;
-    n::Int = 100,
-    type::Val{T} = Val(Float64),
-    kwargs...,
-) where {T}
+function hs11_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
 
     x0 = T[4.9; 0.1]
     f(x) = (x[1] - 5)^2 + x[2]^2 - 25
@@ -14,4 +10,29 @@ function hs11_autodiff(;
 
 end
 
-hs11_meta = Dict(    :nvar => 2,    :variable_size => false,    :ncon => 1,    :variable_con_size => false,    :nnzo => 2,    :nnzh => 3,    :nnzj => 2,    :minimize => true,    :name => "hs11",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8),    :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => false,    :has_inequalities_only => true,    :has_bounds => false,    :has_fixed_variables => false,    :cqs => 0,  )
+hs11_meta = Dict(
+    :nvar => 2,
+    :variable_size => false,
+    :ncon => 1,
+    :variable_con_size => false,
+    :nnzo => 2,
+    :nnzh => 3,
+    :nnzj => 2,
+    :minimize => true,
+    :name => "hs11",
+    :optimal_value => NaN,
+    :has_multiple_solution => missing,
+    :is_infeasible => missing,
+    :objtype => :other,
+    :contype => :general,
+    :origin => :unknown,
+    :deriv => typemax(UInt8),
+    :not_everywhere_defined => missing,
+    :has_cvx_obj => false,
+    :has_cvx_con => false,
+    :has_equalities_only => false,
+    :has_inequalities_only => true,
+    :has_bounds => false,
+    :has_fixed_variables => false,
+    :cqs => 0,
+)

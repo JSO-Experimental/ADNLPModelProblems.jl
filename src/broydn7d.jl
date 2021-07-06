@@ -13,11 +13,7 @@ function broydn7d_radnlp(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...)
     return RADNLPModel(f, x0, name = "broydn7d_radnlp"; kwargs...)
 end
 
-function broydn7d_autodiff(;
-    n::Int = 100,
-    type::Val{T} = Val(Float64),
-    kwargs...
-) where {T}
+function broydn7d_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
     n2 = max(1, div(n, 2))
     n = 2 * n2  # number of variables adjusted to be even
     function f(x)
@@ -32,5 +28,29 @@ function broydn7d_autodiff(;
     return ADNLPModel(f, x0, name = "broydn7d_autodiff"; kwargs...)
 end
 
-broydn7d_meta = Dict(    :nvar => 100,    :variable_size => false,    :ncon => 0,    :variable_con_size => false,    :nnzo => 100,    :nnzh => 5050,    :nnzj => 0,    :minimize => true,    :name => "broydn7d",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => false,    :objtype => :other,      :contype => :unconstrained,    :origin => :unknown,    :deriv => typemax(UInt8),   
- :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => false,    :has_inequalities_only => false,    :has_bounds => false,    :has_fixed_variables => false,    :cqs => 0,  )
+broydn7d_meta = Dict(
+    :nvar => 100,
+    :variable_size => false,
+    :ncon => 0,
+    :variable_con_size => false,
+    :nnzo => 100,
+    :nnzh => 5050,
+    :nnzj => 0,
+    :minimize => true,
+    :name => "broydn7d",
+    :optimal_value => NaN,
+    :has_multiple_solution => missing,
+    :is_infeasible => false,
+    :objtype => :other,
+    :contype => :unconstrained,
+    :origin => :unknown,
+    :deriv => typemax(UInt8),
+    :not_everywhere_defined => missing,
+    :has_cvx_obj => false,
+    :has_cvx_con => false,
+    :has_equalities_only => false,
+    :has_inequalities_only => false,
+    :has_bounds => false,
+    :has_fixed_variables => false,
+    :cqs => 0,
+)
