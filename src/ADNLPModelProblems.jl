@@ -286,7 +286,6 @@ end
 
 let i=1
   for pb in union(problems, problems_no_jump)
-    # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
     meta[i,:] = eval(Meta.parse(pb * "_meta"))
     nvar, ncon = meta[i, :nvar], meta[i, :ncon]
     eval(
@@ -306,6 +305,7 @@ let i=1
         ),
       )
     end
+  end
 end
 
 end # module
