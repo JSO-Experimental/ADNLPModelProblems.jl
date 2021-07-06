@@ -55,7 +55,8 @@ function controlinvestment_autodiff(
         zeros(T, N - 1),
         zeros(T, N - 1),
         name = "controlinvestment_autodiff",
-        ; kwargs...
+        ;
+        kwargs...,
     )
 end
 
@@ -94,4 +95,29 @@ function controlinvestment_radnlp(
     )
 end
 
-controlinvestment_meta = Dict(    :nvar => 100,    :variable_size => false,    :ncon => 49,    :variable_con_size => false,    :nnzo => 100,    :nnzh => 5050,    :nnzj => 4900,    :minimize => true,    :name => "controlinvestment",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8),    :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => true,    :has_inequalities_only => false,    :has_bounds => true,    :has_fixed_variables => true,    :cqs => 0,  )
+controlinvestment_meta = Dict(
+    :nvar => 100,
+    :variable_size => false,
+    :ncon => 49,
+    :variable_con_size => false,
+    :nnzo => 100,
+    :nnzh => 5050,
+    :nnzj => 4900,
+    :minimize => true,
+    :name => "controlinvestment",
+    :optimal_value => NaN,
+    :has_multiple_solution => missing,
+    :is_infeasible => missing,
+    :objtype => :other,
+    :contype => :general,
+    :origin => :unknown,
+    :deriv => typemax(UInt8),
+    :not_everywhere_defined => missing,
+    :has_cvx_obj => false,
+    :has_cvx_con => false,
+    :has_equalities_only => true,
+    :has_inequalities_only => false,
+    :has_bounds => true,
+    :has_fixed_variables => true,
+    :cqs => 0,
+)

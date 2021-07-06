@@ -108,9 +108,9 @@ const problems_no_jump = ["lincon", "linsv", "mgh01feas"]
 path = dirname(@__FILE__)
 files = filter(x -> x[end-2:end] == ".jl", readdir(path))
 for file in files
-  if file ≠ "ADNLPModelProblems.jl"
-    include(file)
-  end
+    if file ≠ "ADNLPModelProblems.jl"
+        include(file)
+    end
 end
 #=
 for pb in union(problems, problems_no_jump)
@@ -126,57 +126,57 @@ const origins = [:academic, :modelling, :real, :unknown]
 const cqs = Dict(4 => "LICQ", 3 => "MFCQ", 2 => "GCQ", 1 => "none", 0 => "unknown")
 
 const names = [
-  :nvar
-  :variable_size
-  :ncon
-  :variable_con_size
-  :nnzo
-  :nnzh
-  :nnzj
-  :minimize
-  :name
-  :optimal_value
-  :has_multiple_solution
-  :is_infeasible
-  :objtype
-  :contype
-  :origin
-  :deriv
-  :not_everywhere_defined
-  :has_cvx_obj
-  :has_cvx_con
-  :has_equalities_only
-  :has_inequalities_only
-  :has_bounds
-  :has_fixed_variables
-  :cqs
+    :nvar
+    :variable_size
+    :ncon
+    :variable_con_size
+    :nnzo
+    :nnzh
+    :nnzj
+    :minimize
+    :name
+    :optimal_value
+    :has_multiple_solution
+    :is_infeasible
+    :objtype
+    :contype
+    :origin
+    :deriv
+    :not_everywhere_defined
+    :has_cvx_obj
+    :has_cvx_con
+    :has_equalities_only
+    :has_inequalities_only
+    :has_bounds
+    :has_fixed_variables
+    :cqs
 ]
 
 const types = [
-  Int
-  Bool
-  Int
-  Bool
-  Int
-  Int
-  Int
-  Bool
-  String
-  Real
-  Union{Bool, Missing}
-  Union{Bool, Missing}
-  Symbol
-  Symbol
-  Symbol
-  UInt8
-  Union{Bool, Missing}
-  Bool
-  Bool
-  Bool
-  Bool
-  Bool
-  Bool
-  UInt8
+    Int
+    Bool
+    Int
+    Bool
+    Int
+    Int
+    Int
+    Bool
+    String
+    Real
+    Union{Bool,Missing}
+    Union{Bool,Missing}
+    Symbol
+    Symbol
+    Symbol
+    UInt8
+    Union{Bool,Missing}
+    Bool
+    Bool
+    Bool
+    Bool
+    Bool
+    Bool
+    UInt8
 ]
 
 const number_of_problems = length(files)
@@ -224,85 +224,90 @@ const meta = DataFrame(names .=> [Array{T}(undef, number_of_problems) for T in t
   `generate_meta(name, variable_size, variable_con_size, cvx_obj, cvx_con, quad_cons)`   
   is used to generate the meta of a given JuMP model.
 """
-function generate_meta(name::String, args...;kwargs...)
-  return generate_meta(eval(Meta.parse(name*"_autodiff(n=$(default_nvar))")), name, args...; kwargs...)
+function generate_meta(name::String, args...; kwargs...)
+    return generate_meta(
+        eval(Meta.parse(name * "_autodiff(n=$(default_nvar))")),
+        name,
+        args...;
+        kwargs...,
+    )
 end
 
 function generate_meta(
-  nlp::AbstractNLPModel, 
-  name::String;
-  variable_size::Bool=false, 
-  variable_con_size::Bool=false,
-  cvx_obj::Bool=false,
-  cvx_con::Bool=false,
-  origin::Symbol=:unknown,
-  quad_cons::Bool=false,
-  cq::UInt8=UInt8(0),
+    nlp::AbstractNLPModel,
+    name::String;
+    variable_size::Bool = false,
+    variable_con_size::Bool = false,
+    cvx_obj::Bool = false,
+    cvx_con::Bool = false,
+    origin::Symbol = :unknown,
+    quad_cons::Bool = false,
+    cq::UInt8 = UInt8(0),
 )
-  contype = if quad_cons
-    :quadratic
-  elseif nlp.meta.ncon == 0 && !(length(nlp.meta.ifree) < nlp.meta.nvar)
-    :unconstrained
-  elseif nlp.meta.nlin == nlp.meta.ncon > 0
-    :linear
-  else
-    :general
-  end
-  objtype = :other
+    contype = if quad_cons
+        :quadratic
+    elseif nlp.meta.ncon == 0 && !(length(nlp.meta.ifree) < nlp.meta.nvar)
+        :unconstrained
+    elseif nlp.meta.nlin == nlp.meta.ncon > 0
+        :linear
+    else
+        :general
+    end
+    objtype = :other
 
-  str = "$(name)_meta = Dict(
-    :nvar => $(nlp.meta.nvar),
-    :variable_size => $(variable_size),
-    :ncon => $(nlp.meta.ncon),
-    :variable_con_size => $(variable_con_size),
-    :nnzo => $(nlp.meta.nnzo),
-    :nnzh => $(nlp.meta.nnzh),
-    :nnzj => $(nlp.meta.nnzj),
-    :minimize => $(nlp.meta.minimize),
-    :name => \"$(name)\",
-    :optimal_value => $(NaN),
-    :has_multiple_solution => $(missing),
-    :is_infeasible => $(nlp.meta.ncon == 0 ? false : missing),
-    :objtype => :$(objtype),  
-    :contype => :$(contype),
-    :origin => :$(origin),
-    :deriv => typemax(UInt8),
-    :not_everywhere_defined => $(missing),
-    :has_cvx_obj => $(cvx_obj),
-    :has_cvx_con => $(cvx_con),
-    :has_equalities_only => $(length(nlp.meta.jfix) == nlp.meta.ncon > 0),
-    :has_inequalities_only => $(nlp.meta.ncon > 0 && length(nlp.meta.jfix) == 0),
-    :has_bounds => $(length(nlp.meta.ifree) < nlp.meta.nvar),
-    :has_fixed_variables => $(nlp.meta.ifix != []),
-    :cqs => $(cq),
-  )"
-  return str
+    str = "$(name)_meta = Dict(
+      :nvar => $(nlp.meta.nvar),
+      :variable_size => $(variable_size),
+      :ncon => $(nlp.meta.ncon),
+      :variable_con_size => $(variable_con_size),
+      :nnzo => $(nlp.meta.nnzo),
+      :nnzh => $(nlp.meta.nnzh),
+      :nnzj => $(nlp.meta.nnzj),
+      :minimize => $(nlp.meta.minimize),
+      :name => \"$(name)\",
+      :optimal_value => $(NaN),
+      :has_multiple_solution => $(missing),
+      :is_infeasible => $(nlp.meta.ncon == 0 ? false : missing),
+      :objtype => :$(objtype),  
+      :contype => :$(contype),
+      :origin => :$(origin),
+      :deriv => typemax(UInt8),
+      :not_everywhere_defined => $(missing),
+      :has_cvx_obj => $(cvx_obj),
+      :has_cvx_con => $(cvx_con),
+      :has_equalities_only => $(length(nlp.meta.jfix) == nlp.meta.ncon > 0),
+      :has_inequalities_only => $(nlp.meta.ncon > 0 && length(nlp.meta.jfix) == 0),
+      :has_bounds => $(length(nlp.meta.ifree) < nlp.meta.nvar),
+      :has_fixed_variables => $(nlp.meta.ifix != []),
+      :cqs => $(cq),
+    )"
+    return str
 end
 
-let i=1
-  for pb in union(problems, problems_no_jump)
-    # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
-    meta[i,:] = eval(Meta.parse(pb * "_meta"))
-    nvar, ncon = meta[i, :nvar], meta[i, :ncon]
-    eval(
-      Meta.parse(
-        "$(pb)_reverse(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
-      ),
-    )
-    eval(
-      Meta.parse(
-        "$(pb)_zygote(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ZygoteAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
-      ),
-    )
-    if pb in problems
-      eval(
-        Meta.parse(
-          "$(pb)_jump(args... ; n=$(default_nvar), kwargs...) = MathOptNLPModel($(pb)(n))",
-        ),
-      )
+let i = 1
+    for pb in union(problems, problems_no_jump)
+        # eval(Meta.parse("$(pb)_radnlp_smartreverse(args... ; kwargs...) = $(pb)_radnlp(args... ; n=$(nvar), gradient = ADNLPModels.smart_reverse, kwargs...)"))
+        meta[i, :] = eval(Meta.parse(pb * "_meta"))
+        nvar, ncon = meta[i, :nvar], meta[i, :ncon]
+        eval(
+            Meta.parse(
+                "$(pb)_reverse(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
+            ),
+        )
+        eval(
+            Meta.parse(
+                "$(pb)_zygote(args... ; kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ZygoteAD($(nvar),$(ncon)), n=$(default_nvar), kwargs...)",
+            ),
+        )
+        if pb in problems
+            eval(
+                Meta.parse(
+                    "$(pb)_jump(args... ; n=$(default_nvar), kwargs...) = MathOptNLPModel($(pb)(n))",
+                ),
+            )
+        end
+        i += 1
     end
-    i += 1
-  end
 end
 
 end # module

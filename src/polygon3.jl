@@ -95,5 +95,29 @@ function polygon3_radnlp(
     )
 end
 
-polygon3_meta = Dict(    :nvar => 100,    :variable_size => false,    :ncon => 100,    :variable_con_size => false,    :nnzo => 100,    :nnzh => 5050,    :nnzj => 10000,    :minimize => true,    :name => "polygon3",    :optimal_value => NaN,    :has_multiple_solution => missing,    :is_infeasible => missing,    :objtype => :other,      :contype => :general,    :origin => :unknown,    :deriv => typemax(UInt8), 
-   :not_everywhere_defined => missing,    :has_cvx_obj => false,    :has_cvx_con => false,    :has_equalities_only => false,    :has_inequalities_only => true,    :has_bounds => false,    :has_fixed_variables => false,    :cqs => 0,  )
+polygon3_meta = Dict(
+    :nvar => 100,
+    :variable_size => false,
+    :ncon => 100,
+    :variable_con_size => false,
+    :nnzo => 100,
+    :nnzh => 5050,
+    :nnzj => 10000,
+    :minimize => true,
+    :name => "polygon3",
+    :optimal_value => NaN,
+    :has_multiple_solution => missing,
+    :is_infeasible => missing,
+    :objtype => :other,
+    :contype => :general,
+    :origin => :unknown,
+    :deriv => typemax(UInt8),
+    :not_everywhere_defined => missing,
+    :has_cvx_obj => false,
+    :has_cvx_con => false,
+    :has_equalities_only => false,
+    :has_inequalities_only => true,
+    :has_bounds => false,
+    :has_fixed_variables => false,
+    :cqs => 0,
+)
