@@ -58,3 +58,5 @@ curly10_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_curly10_meta(; n::Int=default_nvar) = (curly10_meta[:nvar], curly10_meta[:ncon])

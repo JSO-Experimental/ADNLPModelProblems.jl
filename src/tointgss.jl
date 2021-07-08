@@ -50,3 +50,5 @@ tointgss_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_tointgss_meta(; n::Int=default_nvar) = (tointgss_meta[:nvar], tointgss_meta[:ncon])

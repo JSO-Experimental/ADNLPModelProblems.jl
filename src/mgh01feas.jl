@@ -39,3 +39,5 @@ mgh01feas_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_mgh01feas_meta(; n::Int=default_nvar) = (mgh01feas_meta[:nvar], mgh01feas_meta[:ncon])

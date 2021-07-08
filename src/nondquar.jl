@@ -50,3 +50,5 @@ nondquar_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_nondquar_meta(; n::Int=default_nvar) = (nondquar_meta[:nvar], nondquar_meta[:ncon])

@@ -50,3 +50,5 @@ freuroth_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_freuroth_meta(; n::Int=default_nvar) = (freuroth_meta[:nvar], freuroth_meta[:ncon])

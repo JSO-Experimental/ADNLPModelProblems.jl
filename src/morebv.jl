@@ -60,3 +60,5 @@ morebv_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_morebv_meta(; n::Int=default_nvar) = (morebv_meta[:nvar], morebv_meta[:ncon])

@@ -261,3 +261,5 @@ structural_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_structural_meta(; n::Int=default_nvar) = (structural_meta[:nvar], structural_meta[:ncon])

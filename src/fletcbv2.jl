@@ -48,3 +48,5 @@ fletcbv2_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_fletcbv2_meta(; n::Int=default_nvar) = (fletcbv2_meta[:nvar], fletcbv2_meta[:ncon])

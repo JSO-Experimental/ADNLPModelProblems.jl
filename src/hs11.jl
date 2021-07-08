@@ -36,3 +36,5 @@ hs11_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_hs11_meta(; n::Int=default_nvar) = (hs11_meta[:nvar], hs11_meta[:ncon])

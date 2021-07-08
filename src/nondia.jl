@@ -44,3 +44,5 @@ nondia_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_nondia_meta(; n::Int=default_nvar) = (nondia_meta[:nvar], nondia_meta[:ncon])

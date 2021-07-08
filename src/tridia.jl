@@ -44,3 +44,5 @@ tridia_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_tridia_meta(; n::Int=default_nvar) = (tridia_meta[:nvar], tridia_meta[:ncon])

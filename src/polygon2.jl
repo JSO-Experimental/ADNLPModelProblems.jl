@@ -113,3 +113,5 @@ polygon2_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_polygon2_meta(; n::Int=default_nvar) = (polygon2_meta[:nvar], polygon2_meta[:ncon])

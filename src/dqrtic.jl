@@ -42,3 +42,5 @@ dqrtic_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_dqrtic_meta(; n::Int=default_nvar) = (dqrtic_meta[:nvar], dqrtic_meta[:ncon])

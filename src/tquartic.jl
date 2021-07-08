@@ -44,3 +44,5 @@ tquartic_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_tquartic_meta(; n::Int=default_nvar) = (tquartic_meta[:nvar], tquartic_meta[:ncon])

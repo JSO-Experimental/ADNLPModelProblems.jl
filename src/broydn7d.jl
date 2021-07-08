@@ -54,3 +54,5 @@ broydn7d_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_broydn7d_meta(; n::Int=default_nvar) = (broydn7d_meta[:nvar], broydn7d_meta[:ncon])

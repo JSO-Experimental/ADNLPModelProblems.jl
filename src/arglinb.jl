@@ -44,3 +44,5 @@ arglinb_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_arglinb_meta(; n::Int=default_nvar) = (arglinb_meta[:nvar], arglinb_meta[:ncon])

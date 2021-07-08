@@ -51,3 +51,5 @@ lincon_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_lincon_meta(; n::Int=default_nvar) = (lincon_meta[:nvar], lincon_meta[:ncon])

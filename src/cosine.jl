@@ -42,3 +42,5 @@ cosine_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_cosine_meta(; n::Int=default_nvar) = (cosine_meta[:nvar], cosine_meta[:ncon])

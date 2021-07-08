@@ -62,3 +62,5 @@ penalty2_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_penalty2_meta(; n::Int=default_nvar) = (penalty2_meta[:nvar], penalty2_meta[:ncon])

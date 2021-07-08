@@ -73,3 +73,5 @@ hs56_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_hs56_meta(; n::Int=default_nvar) = (hs56_meta[:nvar], hs56_meta[:ncon])

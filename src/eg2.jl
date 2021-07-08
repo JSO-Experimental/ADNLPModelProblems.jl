@@ -42,3 +42,5 @@ eg2_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_eg2_meta(; n::Int=default_nvar) = (eg2_meta[:nvar], eg2_meta[:ncon])

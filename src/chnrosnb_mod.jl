@@ -54,3 +54,5 @@ chnrosnb_mod_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_chnrosnb_mod_meta(; n::Int=default_nvar) = (chnrosnb_mod_meta[:nvar], chnrosnb_mod_meta[:ncon])

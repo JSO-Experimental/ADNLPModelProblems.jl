@@ -42,3 +42,5 @@ dixon3dq_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_dixon3dq_meta(; n::Int=default_nvar) = (dixon3dq_meta[:nvar], dixon3dq_meta[:ncon])

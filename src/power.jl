@@ -42,3 +42,5 @@ power_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_power_meta(; n::Int=default_nvar) = (power_meta[:nvar], power_meta[:ncon])
