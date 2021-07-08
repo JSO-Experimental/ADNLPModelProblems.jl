@@ -52,3 +52,5 @@ bdqrtic_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_bdqrtic_meta(; n::Int=default_nvar) = (bdqrtic_meta[:nvar], bdqrtic_meta[:ncon])

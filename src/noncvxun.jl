@@ -50,3 +50,5 @@ noncvxun_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_noncvxun_meta(; n::Int=default_nvar) = (noncvxun_meta[:nvar], noncvxun_meta[:ncon])

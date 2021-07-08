@@ -56,3 +56,5 @@ brybnd_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_brybnd_meta(; n::Int=default_nvar) = (brybnd_meta[:nvar], brybnd_meta[:ncon])

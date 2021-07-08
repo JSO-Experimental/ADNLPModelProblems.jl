@@ -46,3 +46,5 @@ sinquad_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_sinquad_meta(; n::Int=default_nvar) = (sinquad_meta[:nvar], sinquad_meta[:ncon])

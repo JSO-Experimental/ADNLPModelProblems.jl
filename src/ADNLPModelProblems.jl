@@ -280,7 +280,9 @@ function generate_meta(
       :has_bounds => $(length(nlp.meta.ifree) < nlp.meta.nvar),
       :has_fixed_variables => $(nlp.meta.ifix != []),
       :cqs => $(cq),
-    )"
+    )
+    
+    get_$(name)_meta(; n::Int=default_nvar) = ($(name)_meta[:nvar], $(name)_meta[:ncon])"
     return str
 end
 

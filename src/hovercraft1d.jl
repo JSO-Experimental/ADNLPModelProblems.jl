@@ -122,3 +122,5 @@ hovercraft1d_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_hovercraft1d_meta(; n::Int=default_nvar) = (hovercraft1d_meta[:nvar], hovercraft1d_meta[:ncon])

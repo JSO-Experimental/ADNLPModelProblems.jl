@@ -56,3 +56,5 @@ cragglvy_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_cragglvy_meta(; n::Int=default_nvar) = (cragglvy_meta[:nvar], cragglvy_meta[:ncon])

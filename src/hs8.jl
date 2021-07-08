@@ -47,3 +47,5 @@ hs8_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_hs8_meta(; n::Int=default_nvar) = (hs8_meta[:nvar], hs8_meta[:ncon])

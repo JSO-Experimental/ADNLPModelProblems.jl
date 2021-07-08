@@ -56,3 +56,5 @@ genrose_nash_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_genrose_nash_meta(; n::Int=default_nvar) = (genrose_nash_meta[:nvar], genrose_nash_meta[:ncon])

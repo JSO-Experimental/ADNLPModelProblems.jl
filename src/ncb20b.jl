@@ -52,3 +52,5 @@ ncb20b_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_ncb20b_meta(; n::Int=default_nvar) = (ncb20b_meta[:nvar], ncb20b_meta[:ncon])

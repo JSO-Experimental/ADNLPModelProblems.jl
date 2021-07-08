@@ -48,3 +48,5 @@ vardim_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_vardim_meta(; n::Int=default_nvar) = (vardim_meta[:nvar], vardim_meta[:ncon])

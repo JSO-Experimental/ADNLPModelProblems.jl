@@ -48,3 +48,5 @@ schmvett_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_schmvett_meta(; n::Int=default_nvar) = (schmvett_meta[:nvar], schmvett_meta[:ncon])

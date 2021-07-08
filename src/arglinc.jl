@@ -44,3 +44,5 @@ arglinc_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_arglinc_meta(; n::Int=default_nvar) = (arglinc_meta[:nvar], arglinc_meta[:ncon])

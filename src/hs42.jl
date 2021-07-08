@@ -47,3 +47,5 @@ hs42_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_hs42_meta(; n::Int=default_nvar) = (hs42_meta[:nvar], hs42_meta[:ncon])

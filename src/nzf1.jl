@@ -74,3 +74,5 @@ NZF1_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_NZF1_meta(; n::Int=default_nvar) = (NZF1_meta[:nvar], NZF1_meta[:ncon])

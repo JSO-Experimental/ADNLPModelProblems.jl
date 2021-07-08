@@ -54,3 +54,5 @@ errinros_mod_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_errinros_mod_meta(; n::Int=default_nvar) = (errinros_mod_meta[:nvar], errinros_mod_meta[:ncon])

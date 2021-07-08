@@ -42,3 +42,5 @@ extrosnb_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_extrosnb_meta(; n::Int=default_nvar) = (extrosnb_meta[:nvar], extrosnb_meta[:ncon])

@@ -46,3 +46,5 @@ beale_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_beale_meta(; n::Int=default_nvar) = (beale_meta[:nvar], beale_meta[:ncon])

@@ -44,3 +44,5 @@ liarwhd_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_liarwhd_meta(; n::Int=default_nvar) = (liarwhd_meta[:nvar], liarwhd_meta[:ncon])

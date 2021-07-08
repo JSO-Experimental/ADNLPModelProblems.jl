@@ -58,3 +58,5 @@ penalty3_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_penalty3_meta(; n::Int=default_nvar) = (penalty3_meta[:nvar], penalty3_meta[:ncon])

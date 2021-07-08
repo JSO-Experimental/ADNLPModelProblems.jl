@@ -35,3 +35,5 @@ linsv_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_linsv_meta(; n::Int=default_nvar) = (linsv_meta[:nvar], linsv_meta[:ncon])

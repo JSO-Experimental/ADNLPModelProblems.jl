@@ -42,3 +42,5 @@ fletchcr_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_fletchcr_meta(; n::Int=default_nvar) = (fletchcr_meta[:nvar], fletchcr_meta[:ncon])

@@ -46,3 +46,5 @@ genrose_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_genrose_meta(; n::Int=default_nvar) = (genrose_meta[:nvar], genrose_meta[:ncon])

@@ -50,3 +50,5 @@ indef_mod_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_indef_mod_meta(; n::Int=default_nvar) = (indef_mod_meta[:nvar], indef_mod_meta[:ncon])

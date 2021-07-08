@@ -42,3 +42,5 @@ arwhead_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_arwhead_meta(; n::Int=default_nvar) = (arwhead_meta[:nvar], arwhead_meta[:ncon])

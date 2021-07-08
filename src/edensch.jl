@@ -46,3 +46,5 @@ edensch_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_edensch_meta(; n::Int=default_nvar) = (edensch_meta[:nvar], edensch_meta[:ncon])

@@ -44,3 +44,5 @@ engval1_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_engval1_meta(; n::Int=default_nvar) = (engval1_meta[:nvar], engval1_meta[:ncon])

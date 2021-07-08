@@ -121,3 +121,5 @@ controlinvestment_meta = Dict(
     :has_fixed_variables => true,
     :cqs => 0,
 )
+
+get_controlinvestment_meta(; n::Int=default_nvar) = (controlinvestment_meta[:nvar], controlinvestment_meta[:ncon])

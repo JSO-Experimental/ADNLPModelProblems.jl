@@ -64,3 +64,5 @@ woods_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_woods_meta(; n::Int=default_nvar) = (woods_meta[:nvar], woods_meta[:ncon])

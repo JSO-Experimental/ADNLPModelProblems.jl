@@ -52,3 +52,5 @@ scosine_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_scosine_meta(; n::Int=default_nvar) = (scosine_meta[:nvar], scosine_meta[:ncon])

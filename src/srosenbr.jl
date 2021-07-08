@@ -50,3 +50,5 @@ srosenbr_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_srosenbr_meta(; n::Int=default_nvar) = (srosenbr_meta[:nvar], srosenbr_meta[:ncon])

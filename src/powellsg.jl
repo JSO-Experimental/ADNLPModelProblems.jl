@@ -50,3 +50,5 @@ powellsg_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_powellsg_meta(; n::Int=default_nvar) = (powellsg_meta[:nvar], powellsg_meta[:ncon])

@@ -42,3 +42,5 @@ quartc_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_quartc_meta(; n::Int=default_nvar) = (quartc_meta[:nvar], quartc_meta[:ncon])

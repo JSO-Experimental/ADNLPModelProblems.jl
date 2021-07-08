@@ -58,3 +58,5 @@ chainwoo_meta = Dict(
     :has_fixed_variables => false,
     :cqs => 0,
 )
+
+get_chainwoo_meta(; n::Int=default_nvar) = (chainwoo_meta[:nvar], chainwoo_meta[:ncon])
