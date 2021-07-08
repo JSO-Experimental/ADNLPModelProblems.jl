@@ -43,6 +43,11 @@ eval(Meta.parse("ADNLPModelProblems.$(pb)_zygote()")) # Zygote backend
 eval(Meta.parse("ADNLPModelProblems.$(pb)_jump()")) # NLPModelJuMP model
 ```
 
+Properties of each problems can be accessed via
+- `nameoftheproblem_meta`: Dict that contains main information. All these information are sum up in for the whole test set in the variables `ADNLPModelProblems.meta`.
+- `get_nameoftheproblem_meta(n)`: returns the number of variables and constraints of the problem parametrized by `n`. 
+If the problem is scalable this varies from `nameoftheproblem_meta[:nvar]` and `nameoftheproblem_meta[:ncon]` that were generated with `n = ADNLPModelProblems.default_nvar`.
+
 # A list of problems
 
 problems4 = ["clnlbeam", "controlinvestment", "hovercraft1d", "polygon1", "polygon2", "polygon3"]
