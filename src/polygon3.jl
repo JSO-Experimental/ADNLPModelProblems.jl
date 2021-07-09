@@ -64,37 +64,6 @@ function polygon3_autodiff(
     )
 end
 
-function polygon3_radnlp(
-    args...;
-    n::Int = 200,
-    type::Val{T} = Val(Float64),
-    kwargs...,
-) where {T}
-    N = div(n, 2)
-    function f(y)
-        x, y = y[1:N], y[N+1:end]
-        return -0.5 * sum(x[i] * y[i+1] - y[i] * x[i+1] for i = 1:N-1) -
-               0.5 * (x[N] * y[1] - y[N] * x[1])
-    end
-    function c(y)
-        x, y = y[1:N], y[N+1:end]
-        return vcat(
-            [x[i]^2 + y[i]^2 for i = 1:N],
-            [x[i] * y[i+1] - y[i] * x[i+1] for i = 1:N-1],
-            x[N] * y[1] - y[N] * x[1],
-        )
-    end
-    xi = zeros(T, 2 * N)
-    return RADNLPModel(
-        f,
-        xi,
-        c,
-        vcat(-Inf * ones(T, N), zeros(T, N)),
-        vcat(ones(T, N), Inf * ones(T, N)),
-        name = "polygon3_radnlp",
-    )
-end
-
 polygon3_meta = Dict(
     :nvar => 100,
     :variable_size => false,

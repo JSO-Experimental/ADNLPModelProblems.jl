@@ -79,44 +79,6 @@ function clnlbeam_autodiff(
     )
 end
 
-function clnlbeam_radnlp(
-    args...;
-    n::Int = 300,
-    type::Val{T} = Val(Float64),
-    kwargs...,
-) where {T}
-    N = div(n - 3, 3)
-    h = 1 / N
-    alpha = 350
-    function f(y)
-        t, x, u = y[1:N+1], y[N+2:2*N+2], y[2*N+3:end]
-        return sum(
-            0.5 * h * (u[i+1]^2 + u[i]^2) + 0.5 * alpha * h * (cos(t[i+1]) + cos(t[i])) for
-            i = 1:N
-        )
-    end
-    function c(y)
-        t, x, u = y[1:N+1], y[N+2:2*N+2], y[2*N+3:end]
-        return vcat(
-            [x[i+1] - x[i] - 0.5 * h * (sin(t[i+1]) + sin(t[i])) for i = 1:N],
-            [t[i+1] - t[i] - 0.5 * h * u[i+1] - 0.5 * h * u[i] for i = 1:N],
-        )
-    end
-    lvar = vcat(-ones(T, N + 1), -0.05 * ones(T, N + 1), -Inf * ones(T, N + 1))
-    uvar = vcat(ones(T, N + 1), 0.05 * ones(T, N + 1), Inf * ones(T, N + 1))
-    xi = zeros(T, 3 * N + 3)
-    return RADNLPModel(
-        f,
-        xi,
-        lvar,
-        uvar,
-        c,
-        zeros(T, 2 * N),
-        zeros(T, 2 * N),
-        name = "clnlbeam_radnlp",
-    )
-end
-
 clnlbeam_meta = Dict(
     :nvar => 99,
     :variable_size => false,
