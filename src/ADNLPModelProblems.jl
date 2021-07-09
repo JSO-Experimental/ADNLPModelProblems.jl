@@ -288,8 +288,12 @@ end
 
 let i=1
   for pb in union(problems, problems_no_jump)
-    meta[i,:] = eval(Meta.parse(pb * "_meta"))
-    nvar, ncon = meta[i, :nvar], meta[i, :ncon]
+    nvar, ncon = eval(Meta.parse("get_" * pb * "_meta(n=$(default_nvar))"))
+    eval(
+      Meta.parse(
+        "$(pb)_forward(args... ; n=$(default_nvar), kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ForwardDiffAD($(nvar),$(ncon)), n=n, kwargs...)",
+      ),
+    )
     eval(
       Meta.parse(
         "$(pb)_reverse(args... ; n=$(default_nvar), kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ReverseDiffAD($(nvar),$(ncon)), n=n, kwargs...)",
