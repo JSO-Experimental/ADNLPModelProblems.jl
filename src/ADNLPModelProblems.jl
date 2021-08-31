@@ -105,19 +105,6 @@ const problems = union(problems2, problems3, scalable_cons_problems)
 # Test problems from ADNLPModels: no JuMP models for these
 const problems_no_jump = ["lincon", "linsv", "mgh01feas"]
 
-path = dirname(@__FILE__)
-files = filter(x -> x[end-2:end] == ".jl", readdir(path))
-for file in files
-    if file ≠ "ADNLPModelProblems.jl"
-        include(file)
-    end
-end
-#=
-for pb in union(problems, problems_no_jump)
-    include("$(lowercase(pb)).jl")
-end
-=#
-
 const default_nvar = 100 # default parameter for scalable problems
 
 const objtypes = [:none, :constant, :linear, :quadratic, :sum_of_squares, :other]
@@ -179,6 +166,9 @@ const types = [
     UInt8
 ]
 
+
+path = dirname(@__FILE__)
+files = filter(x -> x[end-2:end] == ".jl", readdir(path))
 const number_of_problems = length(files)
 
 """
@@ -218,6 +208,17 @@ Classification
 - `cqs`: Between 0 and 4 indicates the constraint qualification of the problem, see `cqs(i)` for the correspondance.
 """
 const meta = DataFrame(names .=> [Array{T}(undef, number_of_problems) for T in types])
+
+for file in files
+  if file ≠ "ADNLPModelProblems.jl"
+      include(file)
+  end
+end
+#=
+for pb in union(problems, problems_no_jump)
+  include("$(lowercase(pb)).jl")
+end
+=#
 
 """
   `generate_meta(jmodel, name, variable_size, variable_con_size, cvx_obj, cvx_con, quad_cons)`   
