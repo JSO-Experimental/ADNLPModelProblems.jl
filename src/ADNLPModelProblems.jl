@@ -96,9 +96,15 @@ problems3 = [
     "hs79",
 ]
 #scalable constrained problems
-const scalable_cons_problems =
-    ["clnlbeam", "controlinvestment", "hovercraft1d", "polygon1", "polygon2", "polygon3"]
-# error with "structural" ?
+const scalable_cons_problems = [
+  "clnlbeam",
+  "controlinvestment",
+  "hovercraft1d",
+  "polygon1",
+  "polygon2",
+  "polygon3",
+  "structural",
+]
 
 const problems = union(problems2, problems3, scalable_cons_problems)
 

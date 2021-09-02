@@ -160,7 +160,7 @@ function structural_autodiff(;
         c,
         lcon,
         ucon,
-        name = "structural_autodiff",
+        name = "structural_autodiff";
         kwargs...,
     )
 end
