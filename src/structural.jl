@@ -166,10 +166,10 @@ function structural_autodiff(;
 end
 
 structural_meta = Dict(
-    :nvar => 600,
-    :variable_size => false,
-    :ncon => 44,
-    :variable_con_size => false,
+    :nvar => 2 * Int(min(Int(round(default_nvar^(1 / 3))), 6) * Int(round(default_nvar^(1 / 3))) * (min(Int(round(default_nvar^(1 / 3))), 6) * Int(round(default_nvar^(1 / 3))) - 1) / 2),
+    :variable_size => true,
+    :ncon => 2 * (min(Int(round(default_nvar^(1 / 3))), 6) * Int(round(default_nvar^(1 / 3))) - (min(Int(round(default_nvar^(1 / 3))), 6) - 2)),
+    :variable_con_size => true,
     :nnzo => 600,
     :nnzh => 180300,
     :nnzj => 26400,
@@ -192,4 +192,7 @@ structural_meta = Dict(
     :cqs => 0,
 )
 
-get_structural_meta(; n::Int=default_nvar) = (structural_meta[:nvar], structural_meta[:ncon])
+get_structural_meta(; n::Integer = default_nvar) = (
+    2 * Int(min(Int(round(n^(1 / 3))), 6) * Int(round(n^(1 / 3))) * (min(Int(round(n^(1 / 3))), 6) * Int(round(n^(1 / 3))) - 1) / 2),
+    2 * (min(Int(round(n^(1 / 3))), 6) * Int(round(n^(1 / 3))) - (min(Int(round(n^(1 / 3))), 6) - 2))
+)

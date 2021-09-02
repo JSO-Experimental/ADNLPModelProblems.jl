@@ -35,4 +35,4 @@ hs5_meta = Dict(
     :cqs => 0,
 )
 
-get_hs5_meta(; n::Int=default_nvar) = (hs5_meta[:nvar], hs5_meta[:ncon])
+get_hs5_meta(; n::Integer = default_nvar) = (hs5_meta[:nvar], hs5_meta[:ncon])

@@ -64,10 +64,10 @@ function hovercraft1d_autodiff(
 end
 
 hovercraft1d_meta = Dict(
-    :nvar => 98,
-    :variable_size => false,
-    :ncon => 68,
-    :variable_con_size => false,
+    :nvar => 3 * div(default_nvar, 3) - 1,
+    :variable_size => true,
+    :ncon => 2 * div(default_nvar, 3) + 2,
+    :variable_con_size => true,
     :nnzo => 98,
     :nnzh => 4851,
     :nnzj => 6664,
@@ -90,4 +90,4 @@ hovercraft1d_meta = Dict(
     :cqs => 0,
 )
 
-get_hovercraft1d_meta(; n::Int=default_nvar) = (hovercraft1d_meta[:nvar], hovercraft1d_meta[:ncon])
+get_hovercraft1d_meta(; n::Integer = default_nvar) = (3 * div(n, 3) - 1, 2 * div(n, 3) + 2)

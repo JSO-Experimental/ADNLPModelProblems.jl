@@ -21,8 +21,8 @@ function sbrybnd_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...
 end
 
 sbrybnd_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -47,4 +47,4 @@ sbrybnd_meta = Dict(
     :cqs => 0,
 )
 
-get_sbrybnd_meta(; n::Int=default_nvar) = (sbrybnd_meta[:nvar], sbrybnd_meta[:ncon])
+get_sbrybnd_meta(; n::Integer = default_nvar) = (n, 0)

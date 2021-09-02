@@ -19,8 +19,8 @@ function woods_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) 
 end
 
 woods_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -45,4 +45,4 @@ woods_meta = Dict(
     :cqs => 0,
 )
 
-get_woods_meta(; n::Int=default_nvar) = (woods_meta[:nvar], woods_meta[:ncon])
+get_woods_meta(; n::Integer = default_nvar) = (n, 0)

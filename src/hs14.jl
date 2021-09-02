@@ -36,4 +36,4 @@ hs14_meta = Dict(
     :cqs => 0,
 )
 
-get_hs14_meta(; n::Int=default_nvar) = (hs14_meta[:nvar], hs14_meta[:ncon])
+get_hs14_meta(; n::Integer = default_nvar) = (hs14_meta[:nvar], hs14_meta[:ncon])

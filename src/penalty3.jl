@@ -16,8 +16,8 @@ function penalty3_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs..
 end
 
 penalty3_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -42,4 +42,4 @@ penalty3_meta = Dict(
     :cqs => 0,
 )
 
-get_penalty3_meta(; n::Int=default_nvar) = (penalty3_meta[:nvar], penalty3_meta[:ncon])
+get_penalty3_meta(; n::Integer = default_nvar) = (n, 0)

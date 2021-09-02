@@ -43,4 +43,4 @@ brownden_meta = Dict(
     :cqs => 0,
 )
 
-get_brownden_meta(; n::Int=default_nvar) = (brownden_meta[:nvar], brownden_meta[:ncon])
+get_brownden_meta(; n::Integer = default_nvar) = (brownden_meta[:nvar], brownden_meta[:ncon])

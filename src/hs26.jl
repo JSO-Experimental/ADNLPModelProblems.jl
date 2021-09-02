@@ -37,4 +37,4 @@ hs26_meta = Dict(
     :cqs => 0,
 )
 
-get_hs26_meta(; n::Int=default_nvar) = (hs26_meta[:nvar], hs26_meta[:ncon])
+get_hs26_meta(; n::Integer = default_nvar) = (hs26_meta[:nvar], hs26_meta[:ncon])

@@ -60,10 +60,10 @@ function polygon1_autodiff(
 end
 
 polygon1_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
-    :ncon => 50,
-    :variable_con_size => false,
+    :nvar => 2 * div(default_nvar, 2),
+    :variable_size => true,
+    :ncon => div(default_nvar, 2),
+    :variable_con_size => true,
     :nnzo => 100,
     :nnzh => 5050,
     :nnzj => 5000,
@@ -86,4 +86,4 @@ polygon1_meta = Dict(
     :cqs => 0,
 )
 
-get_polygon1_meta(; n::Int=default_nvar) = (polygon1_meta[:nvar], polygon1_meta[:ncon])
+get_polygon1_meta(; n::Integer = default_nvar) = (2 * div(n, 2), div(n, 2))
