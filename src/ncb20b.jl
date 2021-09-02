@@ -1,4 +1,4 @@
-function ncb20b_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function ncb20b_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n ≥ 20 || error("ncb20 : n ≥ 20")
     function f(x)
         n = length(x)

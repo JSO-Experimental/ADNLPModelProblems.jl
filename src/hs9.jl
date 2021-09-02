@@ -1,4 +1,4 @@
-function hs9_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs9_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     return ADNLPModel(
         x -> sin(π * x[1] / 12) * cos(π * x[2] / 16),
         zeros(T, 2),

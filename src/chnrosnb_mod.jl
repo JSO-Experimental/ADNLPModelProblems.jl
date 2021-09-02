@@ -1,5 +1,5 @@
 function chnrosnb_mod_autodiff(;
-    n::Int = 100,
+    n::Int = default_nvar,
     type::Val{T} = Val(Float64),
     kwargs...,
 ) where {T}

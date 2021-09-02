@@ -4,7 +4,7 @@ https://nbviewer.jupyter.org/urls/laurentlessard.com/teaching/cs524/examples/Hov
 Hovercraft 1D example
 =#
 
-function hovercraft1d(args...; n = 100, kwargs...)
+function hovercraft1d(args...; n::Int = default_nvar, kwargs...)
     m = Model()
 
     T = div(n, 3)           # length of time horizon

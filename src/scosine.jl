@@ -1,4 +1,4 @@
-function scosine_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function scosine_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n ≥ 2 || error("scosine : n ≥ 2")
     p = zeros(n)
     for i = 1:n

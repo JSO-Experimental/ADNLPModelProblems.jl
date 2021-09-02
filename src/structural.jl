@@ -81,7 +81,7 @@ function structural(args...; n = 100, kwargs...)
 end
 
 function structural_autodiff(;
-    n::Int = 100,
+    n::Int = default_nvar,
     type::Val{T} = Val(Float64),
     kwargs...,
 ) where {T}

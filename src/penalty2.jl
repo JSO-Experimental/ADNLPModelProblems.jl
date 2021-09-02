@@ -1,4 +1,4 @@
-function penalty2_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function penalty2_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n ≥ 3 || error("penalty2 : n ≥ 3")
     function f(x)
         n = length(x)

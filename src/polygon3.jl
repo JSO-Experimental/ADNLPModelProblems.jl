@@ -6,7 +6,7 @@ Largest inscribed polygon
 T.M.: origin problem is a Max.
 =#
 
-function polygon3(args...; n = 100, kwargs...)
+function polygon3(args...; n::Int = default_nvar, kwargs...)
     m = Model()
     N = div(n, 2)
     @variable(m, x[1:N])

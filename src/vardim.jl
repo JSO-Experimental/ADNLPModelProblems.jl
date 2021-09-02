@@ -1,4 +1,4 @@
-function vardim_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function vardim_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         return sum((x[i] - 1)^2 for i = 1:n) +

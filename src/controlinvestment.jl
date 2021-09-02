@@ -1,4 +1,4 @@
-function controlinvestment(args...; n::Int = 200, kwargs...)
+function controlinvestment(args...; n::Int = default_nvar, kwargs...)
 
     m = Model()
 

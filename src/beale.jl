@@ -1,4 +1,4 @@
-function beale_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function beale_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         return (1.5 + x[1] * (1.0 - x[2]))^2 +

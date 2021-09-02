@@ -1,4 +1,4 @@
-function noncvxun_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function noncvxun_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n ≥ 2 || error("noncvxun : n ≥ 2")
     function f(x)
         n = length(x)

@@ -1,4 +1,4 @@
-function linsv_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function linsv_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
 
     x0 = zeros(T, 2)
     f(x) = x[1]
