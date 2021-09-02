@@ -175,7 +175,18 @@ const types = [
 
 path = dirname(@__FILE__)
 files = filter(x -> x[end-2:end] == ".jl", readdir(path))
-const number_of_problems = length(files)
+const number_of_problems = length(union(problems, problems_no_jump))
+
+for file in files
+  if file ≠ "ADNLPModelProblems.jl"
+      include(file)
+  end
+end
+#=
+for pb in union(problems, problems_no_jump)
+  include("$(lowercase(pb)).jl")
+end
+=#
 
 """
     OptimizationProblems.meta
@@ -213,18 +224,15 @@ Classification
 - `has_fixed_variables`: true if it has fixed variables
 - `cqs`: Between 0 and 4 indicates the constraint qualification of the problem, see `cqs(i)` for the correspondance.
 """
-const meta = DataFrame(names .=> [Array{T}(undef, number_of_problems) for T in types])
+const meta = DataFrame(
+  names .=> [
+    Array{T}(undef, number_of_problems) for T in types
+  ]
+)
 
-for file in files
-  if file ≠ "ADNLPModelProblems.jl"
-      include(file)
-  end
+for name in names, i = 1:number_of_problems
+  meta[!, name][i] = eval(Meta.parse("$(union(problems, problems_no_jump)[i])_meta"))[name]
 end
-#=
-for pb in union(problems, problems_no_jump)
-  include("$(lowercase(pb)).jl")
-end
-=#
 
 """
   `generate_meta(jmodel, name, variable_size, variable_con_size, cvx_obj, cvx_con, quad_cons)`   
