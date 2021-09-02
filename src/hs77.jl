@@ -1,4 +1,4 @@
-function hs77_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs77_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     return ADNLPModel(
         x -> (x[1] - 1)^2 + (x[1] - x[2])^2 + (x[3] - 1)^2 + (x[4] - 1)^4 + (x[5] - 1)^6,
         2ones(T, 5),
@@ -41,4 +41,4 @@ hs77_meta = Dict(
     :cqs => 0,
 )
 
-get_hs77_meta(; n::Int=default_nvar) = (hs77_meta[:nvar], hs77_meta[:ncon])
+get_hs77_meta(; n::Integer = default_nvar) = (hs77_meta[:nvar], hs77_meta[:ncon])

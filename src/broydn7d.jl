@@ -1,4 +1,4 @@
-function broydn7d_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function broydn7d_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n2 = max(1, div(n, 2))
     n = 2 * n2  # number of variables adjusted to be even
     function f(x)
@@ -14,8 +14,8 @@ function broydn7d_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs..
 end
 
 broydn7d_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -40,4 +40,4 @@ broydn7d_meta = Dict(
     :cqs => 0,
 )
 
-get_broydn7d_meta(; n::Int=default_nvar) = (broydn7d_meta[:nvar], broydn7d_meta[:ncon])
+get_broydn7d_meta(; n::Integer = default_nvar) = (n, 0)

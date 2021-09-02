@@ -1,4 +1,4 @@
-function hs52_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs52_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     return ADNLPModel(
         x -> (4 * x[1] - x[2])^2 + (x[2] + x[3] - 2)^2 + (x[4] - 1)^2 + (x[5] - 1)^2,
         2ones(T, 5),
@@ -37,4 +37,4 @@ hs52_meta = Dict(
     :cqs => 0,
 )
 
-get_hs52_meta(; n::Int=default_nvar) = (hs52_meta[:nvar], hs52_meta[:ncon])
+get_hs52_meta(; n::Integer = default_nvar) = (hs52_meta[:nvar], hs52_meta[:ncon])

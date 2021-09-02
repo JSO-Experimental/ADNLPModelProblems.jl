@@ -1,4 +1,4 @@
-function tridia_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function tridia_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
 
     function f(x)
         n = length(x)
@@ -9,8 +9,8 @@ function tridia_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...)
 end
 
 tridia_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -35,4 +35,4 @@ tridia_meta = Dict(
     :cqs => 0,
 )
 
-get_tridia_meta(; n::Int=default_nvar) = (tridia_meta[:nvar], tridia_meta[:ncon])
+get_tridia_meta(; n::Integer = default_nvar) = (n, 0)

@@ -1,4 +1,4 @@
-function dqdrtic_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function dqdrtic_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         return sum(x[i]^2 + 100 * (x[i+1]^2 + x[i+2]^2) for i = 1:n-2)
@@ -8,8 +8,8 @@ function dqdrtic_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...
 end
 
 dqdrtic_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -34,4 +34,4 @@ dqdrtic_meta = Dict(
     :cqs => 0,
 )
 
-get_dqdrtic_meta(; n::Int=default_nvar) = (dqdrtic_meta[:nvar], dqdrtic_meta[:ncon])
+get_dqdrtic_meta(; n::Integer = default_nvar) = (n, 0)

@@ -1,4 +1,4 @@
-function hs11_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs11_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
 
     x0 = T[4.9; 0.1]
     f(x) = (x[1] - 5)^2 + x[2]^2 - 25
@@ -37,4 +37,4 @@ hs11_meta = Dict(
     :cqs => 0,
 )
 
-get_hs11_meta(; n::Int=default_nvar) = (hs11_meta[:nvar], hs11_meta[:ncon])
+get_hs11_meta(; n::Integer = default_nvar) = (hs11_meta[:nvar], hs11_meta[:ncon])

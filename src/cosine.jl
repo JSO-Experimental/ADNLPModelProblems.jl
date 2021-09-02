@@ -1,4 +1,4 @@
-function cosine_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function cosine_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         return sum(cos(x[i]^2 - x[i+1] / 2) for i = 1:n-1)
@@ -8,8 +8,8 @@ function cosine_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...)
 end
 
 cosine_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -34,4 +34,4 @@ cosine_meta = Dict(
     :cqs => 0,
 )
 
-get_cosine_meta(; n::Int=default_nvar) = (cosine_meta[:nvar], cosine_meta[:ncon])
+get_cosine_meta(; n::Integer = default_nvar) = (n, 0)

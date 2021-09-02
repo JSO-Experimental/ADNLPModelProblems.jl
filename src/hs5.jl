@@ -1,4 +1,4 @@
-function hs5_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs5_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
 
     x0 = zeros(T, 2)
     f(x) = sin(x[1] + x[2]) + (x[1] - x[2])^2 - 3x[1] / 2 + 5x[2] / 2 + 1
@@ -35,4 +35,4 @@ hs5_meta = Dict(
     :cqs => 0,
 )
 
-get_hs5_meta(; n::Int=default_nvar) = (hs5_meta[:nvar], hs5_meta[:ncon])
+get_hs5_meta(; n::Integer = default_nvar) = (hs5_meta[:nvar], hs5_meta[:ncon])

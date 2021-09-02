@@ -1,4 +1,4 @@
-function sinquad_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function sinquad_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         return (x[1] - 4)^4 +
@@ -10,8 +10,8 @@ function sinquad_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...
 end
 
 sinquad_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -36,4 +36,4 @@ sinquad_meta = Dict(
     :cqs => 0,
 )
 
-get_sinquad_meta(; n::Int=default_nvar) = (sinquad_meta[:nvar], sinquad_meta[:ncon])
+get_sinquad_meta(; n::Integer = default_nvar) = (n, 0)

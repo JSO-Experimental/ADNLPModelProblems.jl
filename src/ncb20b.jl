@@ -1,4 +1,4 @@
-function ncb20b_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function ncb20b_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n ≥ 20 || error("ncb20 : n ≥ 20")
     function f(x)
         n = length(x)
@@ -13,8 +13,8 @@ function ncb20b_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...)
 end
 
 ncb20b_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -39,4 +39,4 @@ ncb20b_meta = Dict(
     :cqs => 0,
 )
 
-get_ncb20b_meta(; n::Int=default_nvar) = (ncb20b_meta[:nvar], ncb20b_meta[:ncon])
+get_ncb20b_meta(; n::Integer = default_nvar) = (n, 0)

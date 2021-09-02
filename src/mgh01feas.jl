@@ -1,5 +1,5 @@
 function mgh01feas_autodiff(;
-    n::Int = 100,
+    n::Int = default_nvar,
     type::Val{T} = Val(Float64),
     kwargs...,
 ) where {T}
@@ -40,4 +40,4 @@ mgh01feas_meta = Dict(
     :cqs => 0,
 )
 
-get_mgh01feas_meta(; n::Int=default_nvar) = (mgh01feas_meta[:nvar], mgh01feas_meta[:ncon])
+get_mgh01feas_meta(; n::Integer = default_nvar) = (mgh01feas_meta[:nvar], mgh01feas_meta[:ncon])

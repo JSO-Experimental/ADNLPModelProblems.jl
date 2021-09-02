@@ -1,4 +1,4 @@
-function powellsg_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function powellsg_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n = 4 * max(1, div(n, 4))  # number of variables adjusted to be a multiple of 4
     function f(x)
         n = length(x)
@@ -12,8 +12,8 @@ function powellsg_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs..
 end
 
 powellsg_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -38,4 +38,4 @@ powellsg_meta = Dict(
     :cqs => 0,
 )
 
-get_powellsg_meta(; n::Int=default_nvar) = (powellsg_meta[:nvar], powellsg_meta[:ncon])
+get_powellsg_meta(; n::Integer = default_nvar) = (n, 0)

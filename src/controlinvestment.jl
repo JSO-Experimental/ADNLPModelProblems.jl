@@ -1,4 +1,4 @@
-function controlinvestment(args...; n::Int = 200, kwargs...)
+function controlinvestment(args...; n::Int = default_nvar, kwargs...)
 
     m = Model()
 
@@ -61,10 +61,10 @@ function controlinvestment_autodiff(
 end
 
 controlinvestment_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
-    :ncon => 49,
-    :variable_con_size => false,
+    :nvar => 2 * div(default_nvar, 2),
+    :variable_size => true,
+    :ncon => div(default_nvar, 2) - 1,
+    :variable_con_size => true,
     :nnzo => 100,
     :nnzh => 5050,
     :nnzj => 4900,
@@ -87,4 +87,4 @@ controlinvestment_meta = Dict(
     :cqs => 0,
 )
 
-get_controlinvestment_meta(; n::Int=default_nvar) = (controlinvestment_meta[:nvar], controlinvestment_meta[:ncon])
+get_controlinvestment_meta(; n::Integer = default_nvar) = (2 * div(n, 2), div(n, 2) - 1)

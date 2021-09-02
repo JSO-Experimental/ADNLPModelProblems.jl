@@ -1,4 +1,4 @@
-function curly20_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function curly20_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     n < 2 && @warn("curly: number of variables must be ≥ 2")
     n = max(2, n)
     b = 20
@@ -16,8 +16,8 @@ function curly20_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...
 end
 
 curly20_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -42,4 +42,4 @@ curly20_meta = Dict(
     :cqs => 0,
 )
 
-get_curly20_meta(; n::Int=default_nvar) = (curly20_meta[:nvar], curly20_meta[:ncon])
+get_curly20_meta(; n::Integer = default_nvar) = (n, 0)

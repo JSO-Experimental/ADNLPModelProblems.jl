@@ -1,4 +1,4 @@
-function fletchcr_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function fletchcr_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         return 100 * sum((x[i+1] - x[i] + 1 - x[i]^2)^2 for i = 1:n-1)
@@ -8,8 +8,8 @@ function fletchcr_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs..
 end
 
 fletchcr_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -34,4 +34,4 @@ fletchcr_meta = Dict(
     :cqs => 0,
 )
 
-get_fletchcr_meta(; n::Int=default_nvar) = (fletchcr_meta[:nvar], fletchcr_meta[:ncon])
+get_fletchcr_meta(; n::Integer = default_nvar) = (n, 0)

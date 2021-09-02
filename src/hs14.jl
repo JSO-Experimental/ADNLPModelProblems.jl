@@ -1,4 +1,4 @@
-function hs14_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs14_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
 
     x0 = T[2; 2]
     f(x) = (x[1] - 2)^2 + (x[2] - 1)^2
@@ -36,4 +36,4 @@ hs14_meta = Dict(
     :cqs => 0,
 )
 
-get_hs14_meta(; n::Int=default_nvar) = (hs14_meta[:nvar], hs14_meta[:ncon])
+get_hs14_meta(; n::Integer = default_nvar) = (hs14_meta[:nvar], hs14_meta[:ncon])

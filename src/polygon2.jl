@@ -6,7 +6,7 @@ Largest inscribed polygon
 T.M.: origin problem is a Max.
 =#
 
-function polygon2(args...; n = 100, kwargs...)
+function polygon2(args...; n::Int = default_nvar, kwargs...)
     m = Model()
     N = div(n, 2)
     @variable(m, 0 <= r[1:N] <= 1)
@@ -57,8 +57,8 @@ function polygon2_autodiff(
 end
 
 polygon2_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => 2 * div(default_nvar, 2),
+    :variable_size => true,
     :ncon => 1,
     :variable_con_size => false,
     :nnzo => 100,
@@ -83,4 +83,4 @@ polygon2_meta = Dict(
     :cqs => 0,
 )
 
-get_polygon2_meta(; n::Int=default_nvar) = (polygon2_meta[:nvar], polygon2_meta[:ncon])
+get_polygon2_meta(; n::Integer = default_nvar) = (2 * div(n, 2), polygon2_meta[:ncon])

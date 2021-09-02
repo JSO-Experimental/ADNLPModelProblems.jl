@@ -283,7 +283,7 @@ function generate_meta(
       :cqs => $(cq),
     )
     
-    get_$(name)_meta(; n::Int=default_nvar) = ($(name)_meta[:nvar], $(name)_meta[:ncon])"
+    get_$(name)_meta(; n::Integer = default_nvar) = ($(name)_meta[:nvar], $(name)_meta[:ncon])"
     return str
 end
 

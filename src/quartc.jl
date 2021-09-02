@@ -1,4 +1,4 @@
-function quartc_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function quartc_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         return sum((x[i] - i)^4 for i = 1:n)
@@ -8,8 +8,8 @@ function quartc_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...)
 end
 
 quartc_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -34,4 +34,4 @@ quartc_meta = Dict(
     :cqs => 0,
 )
 
-get_quartc_meta(; n::Int=default_nvar) = (quartc_meta[:nvar], quartc_meta[:ncon])
+get_quartc_meta(; n::Integer = default_nvar) = (n, 0)

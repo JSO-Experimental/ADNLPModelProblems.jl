@@ -1,4 +1,4 @@
-function hs47_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs47_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     return ADNLPModel(
         x -> (x[1] - x[2])^2 + (x[2] - x[3])^3 + (x[3] - x[4])^4 + (x[4] - x[5])^4,
         [35.0, -31.0, 11.0, 5.0, -5.0],
@@ -37,4 +37,4 @@ hs47_meta = Dict(
     :cqs => 0,
 )
 
-get_hs47_meta(; n::Int=default_nvar) = (hs47_meta[:nvar], hs47_meta[:ncon])
+get_hs47_meta(; n::Integer = default_nvar) = (hs47_meta[:nvar], hs47_meta[:ncon])

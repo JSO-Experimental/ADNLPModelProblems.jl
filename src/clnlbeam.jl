@@ -11,7 +11,7 @@ Permission to use, copy, modify, and distribute this software and its documentat
 Source: H. Maurer and H.D. Mittelman, "The non-linear beam via optimal control with bound state variables", Optimal Control Applications and Methods 12, pp. 19-31, 1991.
 =#
 
-function clnlbeam(args...; n = 300, kwargs...)
+function clnlbeam(args...; n::Int = default_nvar, kwargs...)
     N = div(n - 3, 3)
     h = 1 / N
     alpha = 350
@@ -80,10 +80,10 @@ function clnlbeam_autodiff(
 end
 
 clnlbeam_meta = Dict(
-    :nvar => 99,
-    :variable_size => false,
-    :ncon => 64,
-    :variable_con_size => false,
+    :nvar => 3 * div(default_nvar - 3, 3) + 3,
+    :variable_size => true,
+    :ncon => 2 * div(default_nvar - 3, 3),
+    :variable_con_size => true,
     :nnzo => 99,
     :nnzh => 4950,
     :nnzj => 6336,
@@ -106,4 +106,4 @@ clnlbeam_meta = Dict(
     :cqs => 0,
 )
 
-get_clnlbeam_meta(; n::Int=default_nvar) = (clnlbeam_meta[:nvar], clnlbeam_meta[:ncon])
+get_clnlbeam_meta(; n::Integer = default_nvar) = (3 * div(n - 3, 3) + 3, 2 * div(n - 3, 3))

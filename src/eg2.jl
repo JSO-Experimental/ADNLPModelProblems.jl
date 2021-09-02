@@ -1,4 +1,4 @@
-function eg2_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function eg2_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     function f(x)
         n = length(x)
         sum(sin(x[1] + x[i]^2 - 1) for i = 1:n-1) + sin(x[n]^2) / 2
@@ -8,8 +8,8 @@ function eg2_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) wh
 end
 
 eg2_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -34,4 +34,4 @@ eg2_meta = Dict(
     :cqs => 0,
 )
 
-get_eg2_meta(; n::Int=default_nvar) = (eg2_meta[:nvar], eg2_meta[:ncon])
+get_eg2_meta(; n::Integer = default_nvar) = (n, 0)

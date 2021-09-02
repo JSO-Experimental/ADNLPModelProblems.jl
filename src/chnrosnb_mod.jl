@@ -1,5 +1,5 @@
 function chnrosnb_mod_autodiff(;
-    n::Int = 100,
+    n::Int = default_nvar,
     type::Val{T} = Val(Float64),
     kwargs...,
 ) where {T}
@@ -14,8 +14,8 @@ function chnrosnb_mod_autodiff(;
 end
 
 chnrosnb_mod_meta = Dict(
-    :nvar => 100,
-    :variable_size => false,
+    :nvar => default_nvar,
+    :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
     :nnzo => 100,
@@ -40,4 +40,4 @@ chnrosnb_mod_meta = Dict(
     :cqs => 0,
 )
 
-get_chnrosnb_mod_meta(; n::Int=default_nvar) = (chnrosnb_mod_meta[:nvar], chnrosnb_mod_meta[:ncon])
+get_chnrosnb_mod_meta(; n::Integer = default_nvar) = (n, 0)

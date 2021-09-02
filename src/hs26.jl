@@ -1,4 +1,4 @@
-function hs26_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs26_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     return ADNLPModel(
         x -> (x[1] - x[2])^2 + (x[2] - x[3])^4,
         [-2.6, 2.0, 2.0],
@@ -37,4 +37,4 @@ hs26_meta = Dict(
     :cqs => 0,
 )
 
-get_hs26_meta(; n::Int=default_nvar) = (hs26_meta[:nvar], hs26_meta[:ncon])
+get_hs26_meta(; n::Integer = default_nvar) = (hs26_meta[:nvar], hs26_meta[:ncon])

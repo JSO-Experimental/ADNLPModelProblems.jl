@@ -1,4 +1,4 @@
-function hs10_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs10_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
 
     x0 = T[-10; 10]
     f(x) = x[1] - x[2]
@@ -36,4 +36,4 @@ hs10_meta = Dict(
     :cqs => 0,
 )
 
-get_hs10_meta(; n::Int=default_nvar) = (hs10_meta[:nvar], hs10_meta[:ncon])
+get_hs10_meta(; n::Integer = default_nvar) = (hs10_meta[:nvar], hs10_meta[:ncon])

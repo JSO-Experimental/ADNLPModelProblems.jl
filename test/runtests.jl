@@ -2,9 +2,9 @@ using ADNLPModelProblems
 
 using Suppressor, Test
 
-@suppress begin
-  n = ADNLPModelProblems.default_nvar
+#@suppress begin
   for pb in union(ADNLPModelProblems.problems, ADNLPModelProblems.problems_no_jump)
+    n = ADNLPModelProblems.default_nvar
     @show pb
     eval(Meta.parse("ADNLPModelProblems.$(pb)_autodiff(n=$n)"))
     eval(Meta.parse("ADNLPModelProblems.$(pb)_forward(n=$n)"))
@@ -27,4 +27,4 @@ using Suppressor, Test
       @test m == meta_pb[:ncon]
     end
   end
-end
+#end

@@ -1,4 +1,4 @@
-function hs39_autodiff(; n::Int = 100, type::Val{T} = Val(Float64), kwargs...) where {T}
+function hs39_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
     return ADNLPModel(
         x -> -x[1],
         2ones(T, 4),
@@ -37,4 +37,4 @@ hs39_meta = Dict(
     :cqs => 0,
 )
 
-get_hs39_meta(; n::Int=default_nvar) = (hs39_meta[:nvar], hs39_meta[:ncon])
+get_hs39_meta(; n::Integer = default_nvar) = (hs39_meta[:nvar], hs39_meta[:ncon])
