@@ -14,7 +14,7 @@ function broydn7d_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64),
 end
 
 broydn7d_meta = Dict(
-    :nvar => default_nvar,
+    :nvar => default_nvar, # n must be greater than 3
     :variable_size => true,
     :ncon => 0,
     :variable_con_size => false,
@@ -40,4 +40,4 @@ broydn7d_meta = Dict(
     :cqs => 0,
 )
 
-get_broydn7d_meta(; n::Integer = default_nvar) = (n, 0)
+get_broydn7d_meta(; n::Integer = default_nvar) = (2 * max(1, div(n, 2)), 0)
