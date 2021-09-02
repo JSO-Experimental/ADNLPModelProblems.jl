@@ -24,44 +24,42 @@
 <!---[doi-img]: https://zenodo.org/badge/DOI/10.5281/zenodo.5056629.svg--->
 <!---[doi-url]: https://doi.org/10.5281/zenodo.5056629--->
 
-A list of optimization problems in ADNLPModel format.
+A list of optimization problems in `ADNLPModel` format, see[ADNLPModels.jl](https://github.com/JuliaSmoothOptimizers/ADNLPModels.jl). Most of the problems given here are also available in [JuMP](https://jump.dev/JuMP.jl/stable/) format either in [OptimizationProblems.jl](https://github.com/JuliaSmoothOptimizers/OptimizationProblems.jl/) or within this package.
 
 The list of available problems are given in `String` format in
 ```
 ADNLPModelProblems.problems
 ```
-or
+This list includes unconstrained and constrained problems, and several are scalable problems. The default parameter value for the variable scale is:
 ```
-ADNLPModelProblems.problems_no_jump # for problems not available in JuMP format
+ADNLPModelProblems.default_nvar
 ```
-
-As shown in the [`runtests.jl`](https://github.com/tmigot/ADNLPModelProblems/main/test/runtests.jl) there are several ways to access the problems:
+The list of problems for which there is no JuMP model is obtained by:
 ```
-eval(Meta.parse("ADNLPModelProblems.$(pb)_forward()")) # ForwardDiff backend
-eval(Meta.parse("ADNLPModelProblems.$(pb)_reverse()")) # ReverseDiff backend
-eval(Meta.parse("ADNLPModelProblems.$(pb)_zygote()")) # Zygote backend
-eval(Meta.parse("ADNLPModelProblems.$(pb)_jump()")) # NLPModelJuMP model
-```
-and the default using `ADNLPModels.jl` default backend
-```
-eval(Meta.parse("ADNLPModelProblems.$(pb)_autodiff()"))
+ADNLPModelProblems.problems_no_jump
 ```
 
-Properties of each problems can be accessed via
-- `nameoftheproblem_meta`: Dict that contains main information. All these information are sum up in for the whole test set in the variables `ADNLPModelProblems.meta`.
-- `get_nameoftheproblem_meta(n)`: returns the number of variables and constraints of the problem parametrized by `n`. 
-If the problem is scalable this varies from `nameoftheproblem_meta[:nvar]` and `nameoftheproblem_meta[:ncon]` that were generated with `n = ADNLPModelProblems.default_nvar`.
+There are several ways to access the problems, for instance `"power"`:
+```
+ADNLPModelProblems.power_forward() # ForwardDiff backend
+ADNLPModelProblems.power_reverse() # ReverseDiff backend
+ADNLPModelProblems.power_zygote() # Zygote backend
+ADNLPModelProblems.power_jump() # NLPModelJuMP model
+```
+and using `ADNLPModels.jl` default backend
+```
+ADNLPModelProblems.power_autodiff()
+```
 
-# A list of problems
+Finally, the properties of each problem can be accessed via
+- `$(nameoftheproblem)_meta`: Dict that contains main information. This information is summed up for the whole test set in the variables `ADNLPModelProblems.meta`.
+- `get_$(nameoftheproblem)_meta(n)`: returns the number of variables and constraints of the problem parameterized by `n`. 
+If the problem is scalable this varies from `$(nameoftheproblem)_meta[:nvar]` and `$(nameoftheproblem)_meta[:ncon]` that were generated with `n = ADNLPModelProblems.default_nvar`.
 
-problems4 = ["clnlbeam", "controlinvestment", "hovercraft1d", "polygon1", "polygon2", "polygon3"]
+# How to contribute?
 
-... we should definitely try to add.
-
-* Rocket control: https://jump.dev/JuMP.jl/stable/tutorials/Nonlinear%20programs/rocket_control/
-* Space Shuttle Reentry Trajectory: https://jump.dev/JuMP.jl/stable/tutorials/Nonlinear%20programs/space_shuttle_reentry_trajectory/
-
-* A lot of problems there: https://laurentlessard.com/teaching/524-intro-to-optimization/
-
-* Bundle adjustement: https://grail.cs.washington.edu/projects/bal/ladybug.html
-Those are not scalable, but pretty large.
+Contributions with new problems are very welcome. A couple of advice for a successful contribution:
+- check that the new problem is not already on the list.
+- furnish as much detail as possible regarding the origin of the problem, e.g. citation, link, application ...
+- the problem should be type-stable, i.e. argument `type::Val{T} = Val(Float64)` should induce the type returned by the `ADNLPModel`.
+- fill-in the `meta` as precisely as possible. The function `generate_meta` helps for this step.
