@@ -9,8 +9,8 @@ makedocs(
     assets = ["assets/style.css"],
     prettyurls = get(ENV, "CI", nothing) == "true",
   ),
-  sitename = "ADNLPModelProblems",
+  sitename = "ADNLPModelProblems.jl",
   pages = Any["Home" => "index.md", "Tutorial" => "tutorial.md", "Reference" => "reference.md"],
 )
 
-deploydocs(repo = "github.com/tmigot/ADNLPModelProblems.git", devbranch = "main")
+deploydocs(repo = "github.com/tmigot/ADNLPModelProblems.jl.git", devbranch = "main")
