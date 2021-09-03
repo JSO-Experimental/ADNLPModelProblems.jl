@@ -13,8 +13,9 @@ using Suppressor, Test
       eval(Meta.parse("ADNLPModelProblems.$(pb)_jump(n=$n)"))
     end
 
-    n, m =
-      eval(Meta.parse("ADNLPModelProblems.get_$(pb)_meta(n=$(2 * ADNLPModelProblems.default_nvar))"))
+    n, m = eval(
+      Meta.parse("ADNLPModelProblems.get_$(pb)_meta(n=$(2 * ADNLPModelProblems.default_nvar))"),
+    )
     meta_pb = eval(Meta.parse("ADNLPModelProblems.$(pb)_meta"))
     if meta_pb[:variable_size]
       @test n != meta_pb[:nvar]
