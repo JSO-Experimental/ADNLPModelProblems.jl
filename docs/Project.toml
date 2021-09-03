@@ -1,5 +1,9 @@
 [deps]
+DataFramesMeta = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+JSOSolvers = "10dff2fc-5484-5881-a0e0-c90441020f8a"
+Query = "1a8c2f83-1ff3-5112-b086-8aa67b057ba1"
+SolverBenchmark = "581a75fa-a23a-52d0-a590-d6201de2218a"
 
 [compat]
 Documenter = "~0.25"
