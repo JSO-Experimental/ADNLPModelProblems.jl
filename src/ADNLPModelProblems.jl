@@ -7,107 +7,6 @@ using NLPModels, NLPModelsJuMP, JuMP, OptimizationProblems
 #stdlib
 using DataFrames, LinearAlgebra
 
-problems2 = [
-  "arglina",
-  "arglinb",
-  "arglinc",
-  "arwhead",
-  "bdqrtic",
-  "beale",
-  "broydn7d",
-  "brownden",
-  "brybnd",
-  "chainwoo",
-  "chnrosnb_mod",
-  "cosine",
-  "cragglvy",
-  "curly10",
-  "curly20",
-  "curly30",
-  "dixon3dq",
-  "dqdrtic",
-  "dqrtic",
-  "edensch",
-  "eg2",
-  "engval1",
-  "errinros_mod",
-  "extrosnb",
-  "fletcbv2",
-  "fletcbv3_mod",
-  "fletchcr",
-  "freuroth",
-  "genhumps",
-  "genrose",
-  "genrose_nash",
-  "indef_mod",
-  "liarwhd",
-  "morebv",
-  "ncb20",
-  "ncb20b",
-  "noncvxu2",
-  "noncvxun",
-  "nondia",
-  "nondquar",
-  "NZF1",
-  "penalty2",
-  "penalty3",
-  "powellsg",
-  "power",
-  "quartc",
-  "sbrybnd",
-  "schmvett",
-  "scosine",
-  "sparsine",
-  "sparsqur",
-  "srosenbr",
-  "sinquad",
-  "tointgss",
-  "tquartic",
-  "tridia",
-  "vardim",
-  "woods",
-]
-# problems with constraints (none are scalable)
-problems3 = [
-  "hs5",
-  "hs6",
-  "hs7",
-  "hs8",
-  "hs9",
-  "hs10",
-  "hs11",
-  "hs14",
-  "hs26",
-  "hs27",
-  "hs28",
-  "hs39",
-  "hs40",
-  "hs42",
-  "hs46",
-  "hs47",
-  "hs48",
-  "hs49",
-  "hs50",
-  "hs51",
-  "hs52",
-  "hs56",
-  "hs63",
-  "hs77",
-  "hs79",
-]
-#scalable constrained problems
-const scalable_cons_problems = [
-  "clnlbeam",
-  "controlinvestment",
-  "hovercraft1d",
-  "polygon1",
-  "polygon2",
-  "polygon3",
-  "structural",
-]
-
-const problems = union(problems2, problems3, scalable_cons_problems)
-
 # Test problems from ADNLPModels: no JuMP models for these
 const problems_no_jump = ["lincon", "linsv", "mgh01feas"]
 
@@ -116,7 +15,7 @@ const default_nvar = 100 # default parameter for scalable problems
 const objtypes = [:none, :constant, :linear, :quadratic, :sum_of_squares, :other]
 const contypes = [:unconstrained, :linear, :quadratic, :general]
 const origins = [:academic, :modelling, :real, :unknown]
-const cqs = Dict(4 => "LICQ", 3 => "MFCQ", 2 => "GCQ", 1 => "none", 0 => "unknown")
+const cqs = Dict(4 => "LICQ", 3 => "MFCQ", 2 => "GCQ", 1 => "none", 0 => "unknown") # handle exterior CQs?
 
 const names = [
   :nvar
@@ -174,21 +73,17 @@ const types = [
 
 path = dirname(@__FILE__)
 files = filter(x -> x[(end - 2):end] == ".jl", readdir(path))
-const number_of_problems = length(union(problems, problems_no_jump))
+const problems = [file[1:(end - 3)] for file in setdiff(files, ["ADNLPModelProblems.jl"])]
+const number_of_problems = length(problems)
 
 for file in files
   if file ≠ "ADNLPModelProblems.jl"
     include(file)
   end
 end
-#=
-for pb in union(problems, problems_no_jump)
-  include("$(lowercase(pb)).jl")
-end
-=#
 
 """
-    OptimizationProblems.meta
+    ADNLPModelProblems.meta
 A composite type that represents the main features of the optimization problem.
     optimize    obj(x)
     subject to  lvar ≤    x    ≤ uvar
@@ -226,7 +121,7 @@ Classification
 const meta = DataFrame(names .=> [Array{T}(undef, number_of_problems) for T in types])
 
 for name in names, i = 1:number_of_problems
-  meta[!, name][i] = eval(Meta.parse("$(union(problems, problems_no_jump)[i])_meta"))[name]
+  meta[!, name][i] = eval(Meta.parse("$(problems[i])_meta"))[name]
 end
 
 """
@@ -297,7 +192,7 @@ function generate_meta(
 end
 
 let i = 1
-  for pb in union(problems, problems_no_jump)
+  for pb in problems
     nvar, ncon = eval(Meta.parse("get_" * pb * "_meta(n=$(default_nvar))"))
     eval(
       Meta.parse(
@@ -314,7 +209,7 @@ let i = 1
         "$(pb)_zygote(args... ; n=$(default_nvar), kwargs...) = $(pb)_autodiff(args... ; adbackend=ADNLPModels.ZygoteAD($(nvar),$(ncon)), n=n, kwargs...)",
       ),
     )
-    if pb in problems
+    if !(pb in problems_no_jump)
       eval(
         Meta.parse(
           "$(pb)_jump(args... ; n=$(default_nvar), kwargs...) = MathOptNLPModel($(pb)(n))",
