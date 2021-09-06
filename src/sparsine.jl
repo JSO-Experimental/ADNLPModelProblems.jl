@@ -6,7 +6,7 @@ function sparsine_autodiff(;
   n ≥ 10 || error("sparsine : n ≥ 10")
   function f(x)
     n = length(x)
-    return 0.5 * sum(
+    return T(0.5) * sum(
       i *
       (
         sin(x[i]) +

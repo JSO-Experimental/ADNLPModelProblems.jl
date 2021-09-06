@@ -100,7 +100,7 @@ function structural_autodiff(;
   N = Nx * Ny  # number of nodes
 
   # NODES: columns are x and y components respectively
-  nodes = [kron(ones(Ny), collect(1:Nx)) kron(collect(1:Ny), ones(Nx))]
+  nodes = [kron(ones(T, Ny), collect(1:Nx)) kron(collect(1:Ny), ones(T, Nx))]
 
   M = Int(N * (N - 1) / 2)  # number of edges
 
@@ -115,9 +115,9 @@ function structural_autodiff(;
     end
   end
 
-  ℓ = zeros(M)
-  nx = zeros(N, M)
-  ny = zeros(N, M)
+  ℓ = zeros(T, M)
+  nx = zeros(T, N, M)
+  ny = zeros(T, N, M)
   for j = 1:M
     i1 = edges[j, 1]
     i2 = edges[j, 2]
@@ -128,8 +128,8 @@ function structural_autodiff(;
     ny[i2, j] = (nodes[i2, 2] - nodes[i1, 2]) / ℓ[j]
   end
 
-  fx = zeros(N)
-  fy = zeros(N)
+  fx = zeros(T, N)
+  fy = zeros(T, N)
   for L in loaded
     ind = L[1]
     fx[ind] = L[2]
@@ -149,8 +149,8 @@ function structural_autodiff(;
   lcon = zeros(T, 2 * (N - length(fixed)))
   ucon = zeros(T, 2 * (N - length(fixed)))
   x0 = ones(T, 2 * M)
-  lvar = vcat(zeros(T, M), -Inf * ones(T, M))
-  uvar = Inf * ones(T, 2 * M)
+  lvar = vcat(zeros(T, M), -T(Inf) * ones(T, M))
+  uvar = T(Inf) * ones(T, 2 * M)
   return ADNLPModel(f, x0, lvar, uvar, c, lcon, ucon, name = "structural_autodiff"; kwargs...)
 end
 

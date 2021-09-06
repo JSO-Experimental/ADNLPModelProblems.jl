@@ -12,7 +12,7 @@ function chainwoo_autodiff(;
       90 * (x[2 * i + 2] - x[2 * i + 1]^2)^2 +
       (1 - x[2 * i + 1])^2 +
       10 * (x[2 * i] + x[2 * i + 2] - 2)^2 +
-      0.1 * (x[2 * i] - x[2 * i + 2])^2 for i = 1:(div(n, 2) - 1)
+      T(0.1) * (x[2 * i] - x[2 * i + 2])^2 for i = 1:(div(n, 2) - 1)
     )
   end
   x0 = -2 * ones(T, n)

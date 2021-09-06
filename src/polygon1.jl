@@ -31,15 +31,15 @@ function polygon1_autodiff(args...; n::Int = 200, type::Val{T} = Val(Float64), k
   N = div(n, 2)
   function f(y)
     r, θ = y[1:N], y[(N + 1):end]
-    return -0.5 * sum(r[i] * r[i + 1] * sin(θ[i + 1] - θ[i]) for i = 1:(N - 1)) -
-           0.5 * r[1] * r[N] * sin(θ[1] - θ[N])
+    return -T(0.5) * sum(r[i] * r[i + 1] * sin(θ[i + 1] - θ[i]) for i = 1:(N - 1)) -
+           T(0.5) * r[1] * r[N] * sin(θ[1] - θ[N])
   end
   function c(y)
     r, θ = y[1:N], y[(N + 1):end]
     return vcat([θ[i + 1] - θ[i] for i = 1:(N - 1)], θ[1])
   end
   lvar = vcat(zeros(T, N), zeros(T, N))
-  uvar = vcat(ones(T, N), 2π * ones(T, N))
+  uvar = vcat(ones(T, N), T(2π) * ones(T, N))
   xi = zeros(T, 2 * N)
   return ADNLPModel(
     f,
@@ -47,7 +47,7 @@ function polygon1_autodiff(args...; n::Int = 200, type::Val{T} = Val(Float64), k
     lvar,
     uvar,
     c,
-    vcat(Inf * ones(T, N - 1), 0),
+    vcat(T(Inf) * ones(T, N - 1), zero(T)),
     zeros(T, N),
     name = "polygon1_autodiff";
     kwargs...,

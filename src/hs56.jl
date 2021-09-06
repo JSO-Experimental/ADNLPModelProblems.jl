@@ -1,7 +1,7 @@
 function hs56_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
   return ADNLPModel(
     x -> -x[1] * x[2] * x[3],
-    [
+    T[
       1.0,
       1.0,
       1.0,
@@ -11,13 +11,13 @@ function hs56_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwa
       asin(sqrt(5 / 7.2)),
     ],
     x -> [
-      x[1] - 4.2 * sin(x[4])^2
-      x[2] - 4.2 * sin(x[5])^2
-      x[3] - 4.2 * sin(x[6])^2
+      x[1] - T(4.2) * sin(x[4])^2
+      x[2] - T(4.2) * sin(x[5])^2
+      x[3] - T(4.2) * sin(x[6])^2
       x[1] + 2 * x[2] + 2 * x[3] - 7.2 * sin(x[7])^2
     ],
-    zeros(4),
-    zeros(4),
+    zeros(T, 4),
+    zeros(T, 4),
     name = "hs56_autodiff";
     kwargs...,
   )

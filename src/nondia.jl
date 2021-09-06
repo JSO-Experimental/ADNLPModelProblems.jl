@@ -2,7 +2,7 @@ function nondia_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), k
   n ≥ 2 || error("nondia : n ≥ 2")
   function f(x)
     n = length(x)
-    return (x[1] - 1.0)^2 + sum((100.0 * x[1] - x[i - 1]^2)^2 for i = 2:n)
+    return (x[1] - 1)^2 + sum((100 * x[1] - x[i - 1]^2)^2 for i = 2:n)
   end
   x0 = -ones(T, n)
   return ADNLPModel(f, x0, name = "nondia_autodiff"; kwargs...)

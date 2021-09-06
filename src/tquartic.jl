@@ -6,7 +6,7 @@ function tquartic_autodiff(;
   n ≥ 2 || error("tquartic : n ≥ 2")
   function f(x)
     n = length(x)
-    return (x[1] - 1.0)^2 + sum((x[1]^2 - x[i + 1]^2)^2 for i = 1:(n - 2))
+    return (x[1] - 1)^2 + sum((x[1]^2 - x[i + 1]^2)^2 for i = 1:(n - 2))
   end
   x0 = ones(T, n)
   return ADNLPModel(f, x0, name = "tquartic_autodiff"; kwargs...)

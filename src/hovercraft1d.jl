@@ -56,8 +56,8 @@ function hovercraft1d_autodiff(
     f,
     xi,
     c,
-    zeros(2 * N + 2),
-    zeros(2 * N + 2),
+    zeros(T, 2 * N + 2),
+    zeros(T, 2 * N + 2),
     name = "hovercraft1d_autodiff";
     kwargs...,
   )

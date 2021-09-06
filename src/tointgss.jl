@@ -7,7 +7,7 @@ function tointgss_autodiff(;
   function f(x)
     n = length(x)
     return sum(
-      (10.0 / (n + 2) + x[i + 2]^2) * (2.0 - exp(-(x[i] - x[i + 1])^2 / (0.1 + x[i + 2]^2))) for
+      (T(10 / (n + 2)) + x[i + 2]^2) * (2 - exp(-(x[i] - x[i + 1])^2 / (T(0.1) + x[i + 2]^2))) for
       i = 1:(n - 2)
     )
   end

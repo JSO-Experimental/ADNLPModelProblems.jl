@@ -2,13 +2,13 @@ function woods_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kw
   n = 4 * max(1, div(n, 4))  # number of variables adjusted to be a multiple of 4
   function f(x)
     n = length(x)
-    return 1.0 + sum(
+    return 1 + sum(
       100 * (x[4 * i - 2] - x[4 * i - 3]^2)^2 +
       (1 - x[4 * i - 3])^2 +
       90 * (x[4 * i] - x[4 * i - 1]^2)^2 +
       (1 - x[4 * i - 1])^2 +
       10 * (x[4 * i - 2] + x[4 * i] - 2)^2 +
-      0.1 * (x[4 * i - 2] - x[4 * i])^2 for i = 1:div(n, 4)
+      T(0.1) * (x[4 * i - 2] - x[4 * i])^2 for i = 1:div(n, 4)
     )
   end
 

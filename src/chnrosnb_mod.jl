@@ -6,8 +6,8 @@ function chnrosnb_mod_autodiff(;
   n ≥ 2 || ("chnrosnb : n ≥ 2")
   function f(x)
     n = length(x)
-    return 16 * sum((x[i - 1] - x[i]^2)^2 * (1.5 + sin(i))^2 for i = 2:n) +
-           sum((1.0 - x[i])^2 for i = 2:n)
+    return 16 * sum((x[i - 1] - x[i]^2)^2 * T(1.5 + sin(i))^2 for i = 2:n) +
+           sum((1 - x[i])^2 for i = 2:n)
   end
   x0 = -ones(T, n)
   return ADNLPModel(f, x0, name = "chnrosnb_autodiff"; kwargs...)

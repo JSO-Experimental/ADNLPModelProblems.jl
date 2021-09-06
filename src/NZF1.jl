@@ -5,7 +5,7 @@ function NZF1_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwa
     n = 13 * nbis
     l = div(n, 13)
     return sum(
-      (3 * x[i] - 60 + 1 / 10 * (x[i + 1] - x[i + 2])^2)^2 +
+      (3 * x[i] - 60 + T(0.1) * (x[i + 1] - x[i + 2])^2)^2 +
       (
         x[i + 1]^2 +
         x[i + 2]^2 +

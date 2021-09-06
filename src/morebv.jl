@@ -2,9 +2,9 @@ function morebv_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), k
   n ≥ 2 || error("morebv : n ≥ 2")
   function f(x)
     n = length(x)
-    h = 1.0 / (n - 1)
+    h = T(1 / (n - 1))
     return sum(
-      (2.0 * x[i] - x[i - 1] - x[i + 1] + (h^2 / 2.0) * (x[i] + (i - 1) * h + 1)^3)^2 for
+      (2 * x[i] - x[i - 1] - x[i + 1] + (h^2 / 2) * (x[i] + (i - 1) * h + 1)^3)^2 for
       i = 2:(n - 1)
     )
   end

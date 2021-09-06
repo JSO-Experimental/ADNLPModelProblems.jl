@@ -1,10 +1,10 @@
 function hs6_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), kwargs...) where {T}
   return ADNLPModel(
     x -> (x[1] - 1)^2,
-    [-1.2; 1.0],
+    T[-1.2; 1.0],
     x -> [10 * (x[2] - x[1]^2)],
-    zeros(1),
-    zeros(1),
+    zeros(T, 1),
+    zeros(T, 1),
     name = "hs6_autodiff";
     kwargs...,
   )
