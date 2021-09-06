@@ -19,7 +19,7 @@ function check_x_feasibility(nlp, x)
 end
 
 infeasible_pb = []
-for pb in union(ADNLPModelProblems.problems, ADNLPModelProblems.problems_no_jump)
+for pb in ADNLPModelProblems.problems
   @show pb
   n = ADNLPModelProblems.default_nvar
   nlp = eval(Meta.parse("ADNLPModelProblems.$(pb)_autodiff(n=$n)"))
