@@ -1,4 +1,4 @@
-using ADNLPModelProblems
+using ADNLPModelProblems, NLPModels
 
 using Suppressor, Test
 
@@ -26,6 +26,16 @@ using Suppressor, Test
       @test m != meta_pb[:ncon]
     else
       @test m == meta_pb[:ncon]
+    end
+
+    for T in [Float32, Float64]
+      nlp = eval(Meta.parse("ADNLPModelProblems.$(pb)_autodiff(type=$(Val(T)))"))
+      x0 = nlp.meta.x0
+      @test eltype(x0) == T
+      @test typeof(obj(nlp, x0)) == T
+      if nlp.meta.ncon > 0
+        @test typeof(obj(nlp, x0)) == T
+      end
     end
   end
 end
