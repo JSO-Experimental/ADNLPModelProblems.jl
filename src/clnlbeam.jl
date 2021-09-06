@@ -41,7 +41,8 @@ function clnlbeam_autodiff(args...; n::Int = 300, type::Val{T} = Val(Float64), k
   function f(y)
     t, x, u = y[1:(N + 1)], y[(N + 2):(2 * N + 2)], y[(2 * N + 3):end]
     return sum(
-      T(0.5) * h * (u[i + 1]^2 + u[i]^2) + T(0.5) * alpha * h * (cos(t[i + 1]) + cos(t[i])) for i = 1:N
+      T(0.5) * h * (u[i + 1]^2 + u[i]^2) + T(0.5) * alpha * h * (cos(t[i + 1]) + cos(t[i])) for
+      i = 1:N
     )
   end
   function c(y)
