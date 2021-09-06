@@ -8,7 +8,7 @@ function noncvxu2_autodiff(;
     n = length(x)
     return sum(
       (x[i] + x[mod(3 * i - 2, n) + 1] + x[mod(7 * i - 3, n) + 1])^2 +
-      4.0 * cos(x[i] + x[mod(3 * i - 2, n) + 1] + x[mod(7 * i - 3, n) + 1]) for i = 1:n
+      4 * cos(x[i] + x[mod(3 * i - 2, n) + 1] + x[mod(7 * i - 3, n) + 1]) for i = 1:n
     )
   end
   x0 = T.([i for i = 1:n])

@@ -6,7 +6,7 @@ function sparsqur_autodiff(;
   n ≥ 10 || error("sparsqur : n ≥ 10")
   function f(x)
     n = length(x)
-    return 1 / 8 * sum(
+    return T(1 / 8) * sum(
       i *
       (
         x[i]^2 +

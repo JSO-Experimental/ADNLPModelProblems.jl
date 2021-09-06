@@ -24,7 +24,7 @@
 <!---[doi-img]: https://zenodo.org/badge/DOI/10.5281/zenodo.5056629.svg--->
 <!---[doi-url]: https://doi.org/10.5281/zenodo.5056629--->
 
-A list of optimization problems in `ADNLPModel` format, see[ADNLPModels.jl](https://github.com/JuliaSmoothOptimizers/ADNLPModels.jl). Most of the problems given here are also available in [JuMP](https://jump.dev/JuMP.jl/stable/) format either in [OptimizationProblems.jl](https://github.com/JuliaSmoothOptimizers/OptimizationProblems.jl/) or within this package.
+A list of optimization problems in `ADNLPModel` format, see [ADNLPModels.jl](https://github.com/JuliaSmoothOptimizers/ADNLPModels.jl). Most of the problems given here are also available in [JuMP](https://jump.dev/JuMP.jl/stable/) format either in [OptimizationProblems.jl](https://github.com/JuliaSmoothOptimizers/OptimizationProblems.jl/) or within this package.
 
 The list of available problems are given in `String` format in
 ```

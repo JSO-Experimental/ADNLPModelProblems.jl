@@ -6,7 +6,7 @@ function curly20_autodiff(; n::Int = default_nvar, type::Val{T} = Val(Float64), 
     n = length(x)
     return sum(
       (sum(x[j] for j = i:min(i + b, n))) *
-      ((sum(x[j] for j = i:min(i + b, n))) * ((sum(x[j] for j = i:min(i + b, n)))^2 - 20) - 0.1) for
+      ((sum(x[j] for j = i:min(i + b, n))) * ((sum(x[j] for j = i:min(i + b, n)))^2 - 20) - T(0.1)) for
       i = 1:n
     )
   end
