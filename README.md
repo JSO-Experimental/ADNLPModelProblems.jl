@@ -1,26 +1,19 @@
 # ADNLPModelProblems.jl
 
-<!---
 | **Documentation** | **CI** | **Coverage** | **Release** | **DOI** |
 |:-----------------:|:------:|:------------:|:-----------:|:-------:|
 | [![docs-stable][docs-stable-img]][docs-stable-url] [![docs-dev][docs-dev-img]][docs-dev-url] | [![build-ci][build-ci-img]][build-ci-url] | [![codecov][codecov-img]][codecov-url] | [![release][release-img]][release-url] | [![doi][doi-img]][doi-url] |
---->
-| **CI** | **Coverage** | **Release** |
-|:------:|:------------:|:-----------:|
-| [![build-ci][build-ci-img]][build-ci-url] | [![codecov][codecov-img]][codecov-url] | [![release][release-img]][release-url] |
 
-<!---[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg--->
-<!---[docs-stable-url]: https://JuliaSmoothOptimizers.github.io/ADNLPModelProblems.jl/stable--->
-<!---[docs-dev-img]: https://img.shields.io/badge/docs-dev-purple.svg--->
-<!---[docs-dev-url]: https://JuliaSmoothOptimizers.github.io/ADNLPModelProblems.jl/dev--->
-[build-ci-img]: https://github.com/tmigot/ADNLPModelProblems.jl/workflows/CI/badge.svg?branch=main
-[build-ci-url]: https://github.com/tmigot/ADNLPModelProblems.jl/actions
-[codecov-img]: https://codecov.io/gh/tmigot/ADNLPModelProblems.jl/branch/main/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/tmigot/ADNLPModelProblems.jl
-<!---[release-img]: https://img.shields.io/github/v/release/JuliaSmoothOptimizers/ADNLPModelProblems.jl.svg?style=flat-square--->
-<!---[release-url]: https://github.com/JuliaSmoothOptimizers/ADNLPModelProblems.jl/releases--->
-[release-img]: https://www.repostatus.org/badges/latest/wip.svg
-[release-url]: https://www.repostatus.org/#wip
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-stable-url]: https://JuliaSmoothOptimizers.github.io/ADNLPModelProblems.jl/stable
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-purple.svg
+[docs-dev-url]: https://JuliaSmoothOptimizers.github.io/ADNLPModelProblems.jl/dev
+[build-ci-img]: https://github.com/JuliaSmoothOptimizers/ADNLPModelProblems.jl/workflows/CI/badge.svg?branch=main
+[build-ci-url]: https://github.com/JuliaSmoothOptimizers/ADNLPModelProblems.jl/actions
+[codecov-img]: https://codecov.io/gh/JuliaSmoothOptimizers/ADNLPModelProblems.jl/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/JuliaSmoothOptimizers/ADNLPModelProblems.jl
+[release-img]: https://img.shields.io/github/v/release/JuliaSmoothOptimizers/ADNLPModelProblems.jl.svg?style=flat-square
+[release-url]: https://github.com/JuliaSmoothOptimizers/ADNLPModelProblems.jl/releases
 <!---[doi-img]: https://zenodo.org/badge/DOI/10.5281/zenodo.5056629.svg--->
 <!---[doi-url]: https://doi.org/10.5281/zenodo.5056629--->
 
